@@ -1,0 +1,103 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Education</title>
+    <style>
+        body {
+            background-color: #2c2c2c;
+            color: #fcf6ba;
+            font-family: 'Georgia', serif;
+            margin: 0;
+            padding: 0;
+            line-height: 1.6;
+        }
+
+        .container {
+            max-width: 800px;
+            margin: 0 auto;
+            padding: 50px 20px;
+        }
+
+        /* --- NEW POP-UP BUTTON STYLES --- */
+        .back-btn {
+            position: fixed; /* Sticks to the screen */
+            top: 20px;
+            left: 20px;
+            background-color: #bf953f;
+            color: #2c2c2c;
+            text-decoration: none;
+            padding: 12px 25px;
+            border-radius: 50px; /* Pill shape */
+            font-family: 'Impact', sans-serif; /* Matches your headers */
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            box-shadow: 0 4px 10px rgba(0,0,0,0.5); /* The "pop" shadow */
+            transition: all 0.3s ease; /* Smooth animation */
+            z-index: 1000; /* Ensures it stays on top of images */
+        }
+
+        .back-btn:hover {
+            background-color: #fcf6ba; /* Brighter gold on hover */
+            transform: translateY(-3px) scale(1.05); /* Moves up and grows slightly */
+            box-shadow: 0 8px 15px rgba(0,0,0,0.6); /* Shadow grows */
+        }
+        /* -------------------------------- */
+
+        .project-section {
+            margin-bottom: 100px;
+            padding-top: 80px; 
+            border-bottom: 1px solid rgba(255,255,255,0.1);
+            padding-bottom: 50px;
+        }
+
+        h1 {
+            color: #bf953f;
+            font-family: 'Impact', sans-serif;
+            font-size: 3rem;
+            margin-bottom: 20px;
+        }
+
+        h2 {
+            color: #fff;
+            margin-bottom: 15px;
+        }
+
+        img {
+            max-width: 50%;
+            border: 5px solid #1a1a1a;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.5);
+            margin: 20px 0;
+            display: block; /* Helps image layout */
+        }
+    </style>
+</head>
+<body>
+
+    <a href="../index.html" class="back-btn">← Back to Gallery</a>
+
+    <div class="container">
+
+        <section id="uiuc" class="project-section">
+            <h1>University of Illinois Urbana-Champaign (UIUC)</h1>
+            <img src="../src/siebel.png" alt="Google Work">
+            <p>I'm currently a Computer Science major at UIUC.</p>
+            <p>I'm honored to be a James Scholar, Matthews Scholar, and National Merit Scholar.</p>
+            <p>I have taken courses including Calculus, intro to CS I and II, Statistics for CS, Linear Algebra with Computational Applications, and Data Structures.</p>
+            <p>I currently have a 3.93 GPA, and am expecting to graduate in Spring 2028.</p>
+            <p>My extracurriculars include being Professional Chair of Alpha Omega Epsilon (a STEM sorority), and being a Grainger Career Scholar.</p>
+        </section>
+
+        <section id="eths" class="project-section">
+            <h1>Evanston Township High School</h1>
+            <img src="../src/eths.png" alt="Loyola Research">
+            <p>I attended Evanston Township High School from 2020 to 2024.</p>
+            <p>I had a 4.0 unweighted GPA and a 1590 SAT.</p>
+            <p>I was the president of Girls Who Code, president of the Animal Welfare Club, captain of the quizbowl team, intern at the school computer center, co-chair for a leadership-through-service program, and a member of the coding club, community service club, math team, and library advisory board.</p>
+        </section>
+
+    </div>
+
+</body>
+</html>

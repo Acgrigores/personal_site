@@ -1,0 +1,117 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Work Experience</title>
+    <style>
+        body {
+            background-color: #2c2c2c;
+            color: #fcf6ba;
+            font-family: 'Georgia', serif;
+            margin: 0;
+            padding: 0;
+            line-height: 1.6;
+        }
+
+        .container {
+            max-width: 800px;
+            margin: 0 auto;
+            padding: 50px 20px;
+        }
+
+        /* --- NEW POP-UP BUTTON STYLES --- */
+        .back-btn {
+            position: fixed; /* Sticks to the screen */
+            top: 20px;
+            left: 20px;
+            background-color: #bf953f;
+            color: #2c2c2c;
+            text-decoration: none;
+            padding: 12px 25px;
+            border-radius: 50px; /* Pill shape */
+            font-family: 'Impact', sans-serif; /* Matches your headers */
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            box-shadow: 0 4px 10px rgba(0,0,0,0.5); /* The "pop" shadow */
+            transition: all 0.3s ease; /* Smooth animation */
+            z-index: 1000; /* Ensures it stays on top of images */
+        }
+
+        .back-btn:hover {
+            background-color: #fcf6ba; /* Brighter gold on hover */
+            transform: translateY(-3px) scale(1.05); /* Moves up and grows slightly */
+            box-shadow: 0 8px 15px rgba(0,0,0,0.6); /* Shadow grows */
+        }
+        /* -------------------------------- */
+
+        .project-section {
+            margin-bottom: 100px;
+            padding-top: 80px; 
+            border-bottom: 1px solid rgba(255,255,255,0.1);
+            padding-bottom: 50px;
+        }
+
+        h1 {
+            color: #bf953f;
+            font-family: 'Impact', sans-serif;
+            font-size: 3rem;
+            margin-bottom: 20px;
+        }
+
+        h2 {
+            color: #fff;
+            margin-bottom: 15px;
+        }
+
+        img {
+            max-width: 50%;
+            border: 5px solid #1a1a1a;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.5);
+            margin: 20px 0;
+            display: block; /* Helps image layout */
+        }
+    </style>
+</head>
+<body>
+
+    <a href="../index.html" class="back-btn">← Back to Gallery</a>
+
+    <div class="container">
+
+        <section id="google" class="project-section">
+            <h1>Google ASDI Intern</h1>
+            <img src="../src/google.png" alt="Google Work">
+            <p>I was an Associate Software Developer Intern at Google in Summer 2025.</p>
+            <p>Accomplishments:</p>
+            <p>Designed and implemented a user-facing feature for the Android Phone App's Calling Card for over 600 million daily active users and over 7 billion daily calls.</p>
+            <p>Engineered (end-to-end) a transformative feature used for Android's production code, working closely with UX designers and tech leads to iteratively develop a positive user experience.</p>
+            <p>Gained proficiency with multi-threaded applications, data services, and state management, as well as navigating internal tools and Google's 2 billion line codebase.</p>
+            <p>Created an internal API accessible across the Android Phone App's teams that will make it easier for applications to support accessibility for Android's ~800 million color blind and low-vision users.</p>
+        </section>
+
+        <section id="luc" class="project-section">
+            <h1>Research Intern (LUC)</h1>
+            <img src="../src/luc.png" alt="Loyola Research">
+            <p>
+                Detailed explanation of your research at the Software and Systems Lab...
+            </p>
+        </section>
+
+        <section id="chrome" class="project-section">
+            <h1>Chrome Support Intern</h1>
+            <img src="../src/eths.png" alt="Chrome">
+            <p>
+            I was an intern at my high school's Chromebook help desk from 2021 to 2024.
+            Responsibilities:
+                Delivered front line customer support within the school's central help desk to support students and staff with their Chromebook computers
+                Checked in/out loaners and customer devices coming in/out of repair
+                Diagnosed and performed troubleshooting on out-of-warranty Chromebooks
+                Performed technical repairs through software updates and replacement of major parts including batteries, screens, keyboards, motherboards, and other modular components
+            </p>
+        </section>
+
+    </div>
+
+</body>
+</html>

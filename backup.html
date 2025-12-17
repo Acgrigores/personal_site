@@ -1,0 +1,448 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>The Gallery Portfolio</title>
+    <style>
+        :root {
+            /* Monochromatic Wall Color */
+            --wall-color: #2c2c2c;
+            --floor-color: #1a1a1a;
+            --frame-gold: #bf953f;
+            --rope-red: #800000; /* This is now the dynamic variable */
+            --text-gold: #fcf6ba;
+        }
+
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+
+        body {
+            font-family: 'Georgia', serif;
+            background-color: var(--wall-color);
+            color: white;
+            overflow-x: auto; 
+            overflow-y: hidden;
+            height: 100vh;
+            width: 100vw;
+            white-space: nowrap; 
+        }
+
+        /* --- Navigation --- */
+        nav {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            background: linear-gradient(to bottom, rgba(0,0,0,1), transparent);
+            padding: 15px;
+            z-index: 1000;
+            display: flex;
+            justify-content: center;
+            gap: 30px;
+            height: 70px;
+        }
+
+        nav a {
+            color: var(--text-gold);
+            text-decoration: none;
+            font-size: 0.9rem;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+            transition: opacity 0.3s;
+            cursor: pointer;
+            text-shadow: 0 2px 4px rgba(0,0,0,0.8);
+        }
+
+        nav a:hover {
+            opacity: 0.7;
+        }
+
+        /* --- Main Gallery Container --- */
+        #gallery-track {
+            display: flex;
+            flex-direction: row;
+            height: 100vh;
+            width: max-content; 
+            padding-left: 45vw;
+            padding-right: 45vw;
+        }
+
+        /* --- Section Styling --- */
+        .gallery-section {
+            display: flex;
+            flex-direction: column;
+            justify-content: flex-start; 
+            align-items: center; 
+            
+            position: relative;
+            padding: 0 100px;
+            padding-top: 90px; 
+            
+            border-right: 1px solid rgba(255,255,255,0.05);
+            
+            /* UPDATED: Removed gradient for flat monochrome look */
+            background-color: var(--wall-color);
+            
+            height: 100%;
+        }
+
+        /* TITLE STYLING */
+        .section-floating-title {
+            position: relative; 
+            margin-bottom: 40px; 
+            
+            font-size: 3.5rem;
+            color: var(--text-gold);
+            text-shadow: 0 4px 10px rgba(0,0,0,0.9);
+            font-family: 'Impact', sans-serif;
+            text-transform: uppercase;
+            white-space: nowrap;
+            letter-spacing: 3px;
+            
+            z-index: 2; 
+            pointer-events: none;
+            opacity: 0.9;
+            border-bottom: 1px solid rgba(191, 149, 63, 0.3);
+            padding-bottom: 5px;
+            flex-shrink: 0; 
+        }
+
+        /* --- The Art Piece Container --- */
+        .art-group {
+            display: flex;
+            gap: 120px; 
+            position: relative;
+            z-index: 1; 
+            align-items: flex-start; 
+            height: 100%;
+        }
+
+        .art-piece {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            position: relative;
+            width: auto; 
+            min-width: 220px;
+        }
+
+        /* Frame Styling */
+        .frame {
+            display: inline-block;
+            border: 12px solid #4a3b2a; 
+            box-shadow: 
+                inset 0 0 20px rgba(0,0,0,0.8), 
+                0 10px 30px rgba(0,0,0,0.5),   
+                0 0 0 4px #8a6e45;            
+            background-color: #000;
+            cursor: pointer;
+            position: relative;
+            transform-style: preserve-3d;
+            will-change: transform;
+            transform: perspective(1000px) rotateY(var(--rot, 0deg));
+            transition: transform 0.1s linear; 
+        }
+
+        .frame:hover {
+            transform: perspective(1000px) rotateY(var(--rot, 0deg)) scale(1.05);
+            box-shadow: 0 20px 50px rgba(0,0,0,0.8), 0 0 0 4px #bf953f; 
+            transition: transform 0.3s ease;
+        }
+
+        .frame img {
+            display: block;
+            max-height: 28vh; 
+            width: auto;
+            max-width: 100%;
+            object-fit: cover;
+            -webkit-user-drag: none;
+        }
+
+        /* Lighting Effect */
+        .frame::after {
+            content: '';
+            position: absolute;
+            top: 0; left: 0; right: 0; bottom: 0;
+            background: radial-gradient(circle at 50% 30%, rgba(255,255,255,0.1), transparent 70%);
+            pointer-events: none;
+        }
+
+        /* Plaque Styling */
+        .plaque {
+            margin-top: 25px;
+            background: linear-gradient(45deg, #bf953f, #fcf6ba, #b38728, #fbf5b7, #aa771c);
+            padding: 2px;
+            width: 220px; 
+            box-shadow: 0 4px 8px rgba(0,0,0,0.4);
+            transform: perspective(1000px) rotateY(var(--rot, 0deg)); 
+            white-space: normal; 
+            max-height: 35vh;
+            overflow-y: auto;
+            scrollbar-width: none; 
+        }
+
+        .plaque-inner {
+            background-color: #1a1a1a;
+            padding: 12px;
+            text-align: center;
+            min-height: 100%;
+        }
+
+        .plaque h3 {
+            font-size: 0.85rem;
+            color: #d4af37;
+            margin-bottom: 8px;
+            letter-spacing: 1px;
+            border-bottom: 1px solid #333;
+            padding-bottom: 5px;
+        }
+
+        .plaque p {
+            font-size: 1rem;
+            color: #ccc;
+            font-style: italic;
+            line-height: 1.4;
+        }
+
+        /* --- Stanchions (Rope Barrier) --- */
+        .stanchion-barrier {
+            position: fixed;
+            bottom: 0;
+            left: 0;
+            width: 100%;
+            height: 15vh; 
+            pointer-events: none;
+            z-index: 100; 
+            background: linear-gradient(to top, #111, transparent);
+        }
+        
+        .rope-container {
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            width: 100%;
+            height: 100px;
+            display: flex;
+            justify-content: space-around;
+        }
+
+        .post {
+            width: 10px;
+            height: 80px;
+            background: linear-gradient(to right, #8a6e45, #bf953f, #8a6e45);
+            margin-top: auto;
+            position: relative;
+            border-radius: 5px 5px 0 0;
+            box-shadow: 0 0 10px rgba(0,0,0,0.8);
+        }
+
+        .post::before {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: -10px;
+            width: 30px;
+            height: 10px;
+            background: #6e5635;
+            border-radius: 50%;
+        }
+
+        .rope {
+            flex-grow: 1;
+            height: 40px;
+            border-bottom: 4px solid var(--rope-red);
+            border-radius: 0 0 50% 50%;
+            margin: 0 -2px;
+            margin-top: 25px;
+            box-shadow: 0 2px 4px rgba(0,0,0,0.5);
+            
+            /* UPDATED: Add transition for smooth color changing */
+            transition: border-bottom-color 0.8s ease; 
+        }
+
+    </style>
+</head>
+<body>
+
+    <nav id="navbar"></nav>
+
+    <div id="gallery-track"></div>
+
+    <div class="stanchion-barrier">
+        <div class="rope-container">
+            <div class="post"></div><div class="rope"></div>
+            <div class="post"></div><div class="rope"></div>
+            <div class="post"></div><div class="rope"></div>
+            <div class="post"></div><div class="rope"></div>
+            <div class="post"></div><div class="rope"></div>
+            <div class="post"></div><div class="rope"></div>
+            <div class="post"></div>
+        </div>
+    </div>
+
+    <script>
+        // ==========================================
+        // DATA CONFIGURATION
+        // ==========================================
+        const galleryData = [
+            {
+                id: 'About me',
+                title: 'About Me',
+                ropeColor: '#800000',
+                items: [
+                    { 
+                        src: 'src/anna.png', 
+                        title: '', 
+                        details: 'Hello! My name is Anna, and I am a computer science student at UIUC. Welcome to my portfolio!' 
+                    },
+                ]
+            },
+            {
+                id: 'work',
+                title: 'Work Experience',
+                ropeColor: '#1e3f66',
+                items: [
+                    { 
+                        src: 'src/google.png', 
+                        title: 'Google ASDI Intern', 
+                        details: 'I interned at Google in Summer 2025, where I worked on accessibility features for Android\'s native phone app.' 
+                    },
+                    { 
+                        src: 'src/luc.png', 
+                        title: 'Research Intern', 
+                        details: 'In summers 2022 and 2024, I was a research intern at Loyola University Chicago\'s Software and Systems Lab, where I assisted with research pertaining to the security of machine learning models.' 
+                    },
+                    { 
+                        src: 'https://picsum.photos/id/1018/400/400', 
+                        title: 'Chrome Support Intern', 
+                        details: 'Long Exposure. The clouds were moving at approx 30mph creating a silk effect.' 
+                    }
+                ]
+            },
+            {
+                id: 'design',
+                title: 'UX Design',
+                // Added color property
+                ropeColor: '#2e8b57', // Sea Green
+                items: [
+                    { 
+                        src: 'https://picsum.photos/id/1/400/500', 
+                        title: 'App Interface', 
+                        details: 'Figma Prototype. This user flow demonstrates the login process for a fintech app.' 
+                    },
+                    { 
+                        src: 'https://picsum.photos/id/180/500/400', 
+                        title: 'Brand Identity', 
+                        details: 'Vector Illustration. Created for a local coffee shop specializing in dark roasts.' 
+                    }
+                ]
+            },
+            {
+                id: 'fine-art',
+                title: 'Fine Art',
+                // Added color property
+                ropeColor: '#4b0082', // Indigo
+                items: [
+                    { src: 'https://picsum.photos/id/1040/400/600', title: 'The Castle', details: 'Acrylic on Canvas. 24x36 inches.' },
+                    { src: 'https://picsum.photos/id/106/500/350', title: 'Dreamscape', details: 'Oil on Wood. A surrealist approach to modern anxiety.' },
+                    { src: 'https://picsum.photos/id/13/400/500', title: 'City Lights', details: 'Watercolor on cold press paper.' },
+                    { src: 'https://picsum.photos/id/17/400/400', title: 'The Path', details: 'Charcoal sketch. 2020.' }
+                ]
+            }
+        ];
+
+        // BUILDER LOGIC
+        const track = document.getElementById('gallery-track');
+        const navbar = document.getElementById('navbar');
+
+        galleryData.forEach(section => {
+            // Navbar Link
+            const link = document.createElement('a');
+            link.innerText = section.title;
+            link.onclick = () => document.getElementById(section.id).scrollIntoView({ behavior: 'smooth' });
+            navbar.appendChild(link);
+
+            // Section Container
+            const sectionDiv = document.createElement('div');
+            sectionDiv.className = 'gallery-section';
+            sectionDiv.id = section.id;
+
+            // Title
+            const floatTitle = document.createElement('div');
+            floatTitle.className = 'section-floating-title';
+            floatTitle.innerText = section.title;
+            sectionDiv.appendChild(floatTitle);
+
+            // Art Container
+            const artGroup = document.createElement('div');
+            artGroup.className = 'art-group';
+
+            section.items.forEach(item => {
+                const artPiece = document.createElement('div');
+                artPiece.className = 'art-piece';
+
+                artPiece.innerHTML = `
+                    <div class="frame">
+                        <img src="${item.src}" alt="${item.title}">
+                    </div>
+                    <div class="plaque">
+                        <div class="plaque-inner">
+                            <h3>${item.title}</h3>
+                            <p>${item.details}</p>
+                        </div>
+                    </div>
+                `;
+                artGroup.appendChild(artPiece);
+            });
+
+            sectionDiv.appendChild(artGroup);
+            track.appendChild(sectionDiv);
+        });
+
+        // 3D TILT & COLOR CHANGE ANIMATION LOOP
+        
+        function animateGallery() {
+            const tiltElements = document.querySelectorAll('.frame, .plaque');
+            const sections = document.querySelectorAll('.gallery-section');
+            const center = window.innerWidth / 2;
+
+            // 1. Handle Tilt
+            tiltElements.forEach(el => {
+                const rect = el.getBoundingClientRect();
+                const elCenter = rect.left + rect.width / 2;
+                const dist = elCenter - center;
+                
+                let rotation = dist / 25;
+                rotation = Math.max(-45, Math.min(45, rotation));
+                
+                const finalRot = rotation * -1;
+
+                el.style.setProperty('--rot', `${finalRot}deg`);
+            });
+
+            // 2. Handle Rope Color Change
+            // Find which section is currently centered on screen
+            sections.forEach(section => {
+                const rect = section.getBoundingClientRect();
+                // If the center of the screen is within this section's horizontal bounds
+                if (rect.left <= center && rect.right >= center) {
+                    const sectionData = galleryData.find(d => d.id === section.id);
+                    if (sectionData && sectionData.ropeColor) {
+                        // Update the css variable
+                        document.documentElement.style.setProperty('--rope-red', sectionData.ropeColor);
+                    }
+                }
+            });
+
+            requestAnimationFrame(animateGallery);
+        }
+
+        animateGallery();
+
+    </script>
+</body>
+</html>

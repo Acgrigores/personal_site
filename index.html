@@ -1,0 +1,476 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>The Gallery Portfolio</title>
+    <style>
+        :root {
+            /* Monochromatic Wall Color */
+            --wall-color: #2c2c2c;
+            --floor-color: #1a1a1a;
+            --frame-gold: #bf953f;
+            --rope-red: #800000; /* This is now the dynamic variable */
+            --text-gold: #fcf6ba;
+        }
+
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+
+        body {
+            font-family: 'Georgia', serif;
+            background-color: var(--wall-color);
+            color: white;
+            overflow-x: auto; 
+            overflow-y: hidden;
+            height: 100vh;
+            width: 100vw;
+            white-space: nowrap; 
+        }
+
+        /* --- Navigation --- */
+        nav {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            background: linear-gradient(to bottom, rgba(0,0,0,1), transparent);
+            padding: 15px;
+            z-index: 1000;
+            display: flex;
+            justify-content: center;
+            gap: 30px;
+            height: 70px;
+        }
+
+        nav a {
+            color: var(--text-gold);
+            text-decoration: none;
+            font-size: 0.9rem;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+            transition: opacity 0.3s;
+            cursor: pointer;
+            text-shadow: 0 2px 4px rgba(0,0,0,0.8);
+        }
+
+        nav a:hover {
+            opacity: 0.7;
+        }
+
+        /* --- Main Gallery Container --- */
+        #gallery-track {
+            display: flex;
+            flex-direction: row;
+            height: 100vh;
+            width: max-content; 
+            padding-left: 45vw;
+            padding-right: 45vw;
+        }
+
+        /* --- Section Styling --- */
+        .gallery-section {
+            display: flex;
+            flex-direction: column;
+            justify-content: flex-start; 
+            align-items: center; 
+            
+            position: relative;
+            padding: 0 100px;
+            padding-top: 90px; 
+            
+            border-right: 1px solid rgba(255,255,255,0.05);
+            
+            /* UPDATED: Removed gradient for flat monochrome look */
+            background-color: var(--wall-color);
+            
+            height: 100%;
+        }
+
+        /* TITLE STYLING */
+        .section-floating-title {
+            position: relative; 
+            margin-bottom: 40px; 
+            
+            font-size: 3.5rem;
+            color: var(--text-gold);
+            text-shadow: 0 4px 10px rgba(0,0,0,0.9);
+            font-family: 'Impact', sans-serif;
+            text-transform: uppercase;
+            white-space: nowrap;
+            letter-spacing: 3px;
+            
+            z-index: 2; 
+            pointer-events: none;
+            opacity: 0.9;
+            border-bottom: 1px solid rgba(191, 149, 63, 0.3);
+            padding-bottom: 5px;
+            flex-shrink: 0; 
+        }
+
+        /* --- The Art Piece Container --- */
+        .art-group {
+            display: flex;
+            gap: 120px; 
+            position: relative;
+            z-index: 1; 
+            align-items: flex-start; 
+            height: 100%;
+        }
+
+        .art-piece {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            position: relative;
+            width: auto; 
+            min-width: 220px;
+        }
+
+        /* Frame Styling */
+        .frame {
+            display: inline-block;
+            border: 12px solid #4a3b2a; 
+            box-shadow: 
+                inset 0 0 20px rgba(0,0,0,0.8), 
+                0 10px 30px rgba(0,0,0,0.5),   
+                0 0 0 4px #8a6e45;            
+            background-color: #000;
+            cursor: pointer;
+            position: relative;
+            transform-style: preserve-3d;
+            will-change: transform;
+            transform: perspective(1000px) rotateY(var(--rot, 0deg));
+            transition: transform 0.1s linear; 
+        }
+
+        .frame:hover {
+            transform: perspective(1000px) rotateY(var(--rot, 0deg)) scale(1.05);
+            box-shadow: 0 20px 50px rgba(0,0,0,0.8), 0 0 0 4px #bf953f; 
+            transition: transform 0.3s ease;
+        }
+
+        .frame img {
+            display: block;
+            max-height: 28vh; 
+            width: auto;
+            max-width: 100%;
+            object-fit: cover;
+            -webkit-user-drag: none;
+        }
+
+        /* Lighting Effect */
+        .frame::after {
+            content: '';
+            position: absolute;
+            top: 0; left: 0; right: 0; bottom: 0;
+            background: radial-gradient(circle at 50% 30%, rgba(255,255,255,0.1), transparent 70%);
+            pointer-events: none;
+        }
+
+        /* Plaque Styling */
+        .plaque {
+            margin-top: 25px;
+            background: linear-gradient(45deg, #bf953f, #fcf6ba, #b38728, #fbf5b7, #aa771c);
+            padding: 2px;
+            width: 220px; 
+            box-shadow: 0 4px 8px rgba(0,0,0,0.4);
+            transform: perspective(1000px) rotateY(var(--rot, 0deg)); 
+            white-space: normal; 
+            max-height: 35vh;
+            overflow-y: auto;
+            scrollbar-width: none; 
+        }
+
+        .plaque-inner {
+            background-color: #1a1a1a;
+            padding: 12px;
+            text-align: center;
+            min-height: 100%;
+        }
+
+        .plaque h3 {
+            font-size: 0.85rem;
+            color: #d4af37;
+            margin-bottom: 8px;
+            letter-spacing: 1px;
+            border-bottom: 1px solid #333;
+            padding-bottom: 5px;
+        }
+
+        .plaque p {
+            font-size: 1rem;
+            color: #ccc;
+            line-height: 1.4;
+        }
+
+        /* --- Stanchions (Rope Barrier) --- */
+        .stanchion-barrier {
+            position: fixed;
+            bottom: 0;
+            left: 0;
+            width: 100%;
+            height: 15vh; 
+            pointer-events: none;
+            z-index: 100; 
+            background: linear-gradient(to top, #111, transparent);
+        }
+        
+        .rope-container {
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            width: 100%;
+            height: 100px;
+            display: flex;
+            justify-content: space-around;
+        }
+
+        .post {
+            width: 10px;
+            height: 80px;
+            background: linear-gradient(to right, #8a6e45, #bf953f, #8a6e45);
+            margin-top: auto;
+            position: relative;
+            border-radius: 5px 5px 0 0;
+            box-shadow: 0 0 10px rgba(0,0,0,0.8);
+        }
+
+        .post::before {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: -10px;
+            width: 30px;
+            height: 10px;
+            background: #6e5635;
+            border-radius: 50%;
+        }
+
+        .rope {
+            flex-grow: 1;
+            height: 40px;
+            border-bottom: 4px solid var(--rope-red);
+            border-radius: 0 0 50% 50%;
+            margin: 0 -2px;
+            margin-top: 25px;
+            box-shadow: 0 2px 4px rgba(0,0,0,0.5);
+            
+            /* UPDATED: Add transition for smooth color changing */
+            transition: border-bottom-color 0.8s ease; 
+        }
+
+    </style>
+</head>
+<body>
+
+    <nav id="navbar"></nav>
+
+    <div id="gallery-track"></div>
+
+    <div class="stanchion-barrier">
+        <div class="rope-container">
+            <div class="post"></div><div class="rope"></div>
+            <div class="post"></div><div class="rope"></div>
+            <div class="post"></div><div class="rope"></div>
+            <div class="post"></div><div class="rope"></div>
+            <div class="post"></div><div class="rope"></div>
+            <div class="post"></div><div class="rope"></div>
+            <div class="post"></div>
+        </div>
+    </div>
+
+<script>
+        // ==========================================
+        // DATA CONFIGURATION
+        // ==========================================
+        const galleryData = [
+            {
+                id: 'About me',
+                title: 'About Me',
+                ropeColor: '#800000',
+                items: [
+                    { 
+                        src: 'src/anna.png', 
+                        title: '', 
+                        details: 'Welcome to my portfolio! I\'m Anna, a computer science student at UIUC. This gallery is an overview of my experience and projects; click the images for more details.',
+                        link: '../index.html' 
+                    },
+                ]
+            },
+            {
+                id: 'Work',
+                title: 'Work Experience',
+                ropeColor: '#1e3f66',
+                items: [
+                    { 
+                        src: 'src/google.png', 
+                        title: 'Google ASDI Intern', 
+                        details: 'Summer 2025. Kotlin, Linux, Android, Jetpack Compose',
+                        link: 'work.html#google'
+                    },
+                    { 
+                        src: 'src/luc.png', 
+                        title: 'Loyola University Research Intern', 
+                        details: 'Summers 2022 and 2024. Python, Linux, Flask, HTML/CSS/JS, Pandas, Git', 
+                        link: 'work.html#luc'
+                    },
+                    { 
+                        src: 'src/eths.png', 
+                        title: 'Chrome Support Intern', 
+                        details: '2021-2024. Chromebook repair, customer service.', 
+                        link: 'work.html#chrome'
+                    }
+                ]
+            },
+            {
+                id: 'Education',
+                title: 'Education',
+                ropeColor: '#2e8b57', 
+                items: [
+                    { 
+                        src: 'src/siebel.png', 
+                        title: 'University of Illinois Urbana-Champaign', 
+                        details: 'Expected Graduation May 2028. 3.93 GPA. Relevant courses: Data Structures, Statistics, Linear Algebra, Calculus', 
+                        link: 'education.html#uiuc'
+                    },
+                    { 
+                        src: 'src/eths.png', 
+                        title: 'Evanston Township High School', 
+                        details: '4.0 GPA. Relevant classes: Computer Science, Cybersecurity, Robotics, Calculus', 
+                        link: 'education.html#eths'
+                    }
+                ]
+            },
+            {
+                id: 'Projects',
+                title: 'Projects',
+                ropeColor: '#800080', 
+                items: [
+                    { 
+                        src: 'src/siebel.png', 
+                        title: 'Louvre Robbery CTF', 
+                        details: 'Expected Graduation May 2028. 3.93 GPA. Relevant courses: Data Structures, Statistics, Linear Algebra, Calculus', 
+                        link: 'education.html#uiuc'
+                    },
+                    { 
+                        src: 'src/eths.png', 
+                        title: 'Evanston Township High School', 
+                        details: '4.0 GPA. Relevant classes: Computer Science, Cybersecurity, Robotics, Calculus', 
+                        link: 'education.html#eths'
+                    }
+                ]
+            },
+            
+            {
+                id: 'Awards',
+                title: 'Awards',
+                ropeColor: '#FFFF00', 
+                items: [
+                    { 
+                        src: 'src/siebel.png', 
+                        title: 'University of Illinois Urbana-Champaign', 
+                        details: 'Expected Graduation May 2028. 3.93 GPA. Relevant courses: Data Structures, Statistics, Linear Algebra, Calculus', 
+                        link: 'education.html#uiuc'
+                    },
+                    { 
+                        src: 'src/eths.png', 
+                        title: 'Evanston Township High School', 
+                        details: '4.0 GPA. Relevant classes: Computer Science, Cybersecurity, Robotics, Calculus', 
+                        link: 'education.html#eths'
+                    }
+                ]
+            },
+        ];
+
+        // BUILDER LOGIC
+        const track = document.getElementById('gallery-track');
+        const navbar = document.getElementById('navbar');
+
+        galleryData.forEach(section => {
+            // Navbar Link
+            const link = document.createElement('a');
+            link.innerText = section.title;
+            link.onclick = () => document.getElementById(section.id).scrollIntoView({ behavior: 'smooth' });
+            navbar.appendChild(link);
+
+            // Section Container
+            const sectionDiv = document.createElement('div');
+            sectionDiv.className = 'gallery-section';
+            sectionDiv.id = section.id;
+
+            // Title
+            const floatTitle = document.createElement('div');
+            floatTitle.className = 'section-floating-title';
+            floatTitle.innerText = section.title;
+            sectionDiv.appendChild(floatTitle);
+
+            // Art Container
+            const artGroup = document.createElement('div');
+            artGroup.className = 'art-group';
+
+            section.items.forEach(item => {
+                const artPiece = document.createElement('div');
+                artPiece.className = 'art-piece';
+
+                // 3. UPDATED HTML STRUCTURE:
+                // Changed <div class="frame"> to <a href="..." class="frame">
+                artPiece.innerHTML = `
+                    <a href="details/${item.link}" class="frame">
+                        <img src="${item.src}" alt="${item.title}">
+                    </a>
+                    <div class="plaque">
+                        <div class="plaque-inner">
+                            <h3>${item.title}</h3>
+                            <p>${item.details}</p>
+                        </div>
+                    </div>
+                `;
+                artGroup.appendChild(artPiece);
+            });
+
+            sectionDiv.appendChild(artGroup);
+            track.appendChild(sectionDiv);
+        });
+
+        // 3D TILT & COLOR CHANGE ANIMATION LOOP
+        function animateGallery() {
+            const tiltElements = document.querySelectorAll('.frame, .plaque');
+            const sections = document.querySelectorAll('.gallery-section');
+            const center = window.innerWidth / 2;
+
+            // 1. Handle Tilt
+            tiltElements.forEach(el => {
+                const rect = el.getBoundingClientRect();
+                const elCenter = rect.left + rect.width / 2;
+                const dist = elCenter - center;
+                
+                let rotation = dist / 25;
+                rotation = Math.max(-45, Math.min(45, rotation));
+                const finalRot = rotation * -1;
+
+                el.style.setProperty('--rot', `${finalRot}deg`);
+            });
+
+            // 2. Handle Rope Color Change
+            sections.forEach(section => {
+                const rect = section.getBoundingClientRect();
+                if (rect.left <= center && rect.right >= center) {
+                    const sectionData = galleryData.find(d => d.id === section.id);
+                    if (sectionData && sectionData.ropeColor) {
+                        document.documentElement.style.setProperty('--rope-red', sectionData.ropeColor);
+                    }
+                }
+            });
+
+            requestAnimationFrame(animateGallery);
+        }
+
+        animateGallery();
+
+    </script>
+</body>
+</html>
