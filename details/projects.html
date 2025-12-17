@@ -71,6 +71,14 @@
             margin: 20px 0;
             display: block; /* Helps image layout */
         }
+
+        video {
+            max-width: 50%;
+            border: 5px solid #1a1a1a;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.5);
+            margin: 20px 0;
+            display: block; /* Helps image layout */
+        }
     </style>
 </head>
 <body>
@@ -101,18 +109,90 @@
                   intelligence when it comes to interpretation and creativity. 
                   I also loved the opportunity to get kids excited about AI and to teach them that computers and creativity 
                   can go hand in hand. I also set up a program to automatically save and email the strips to  visitors,
-                   so that they'd have a little souvenir to take home from the fair.</p>
-            </section>
+                 so that they'd have a little souvenir to take home from the fair.</p>
+        </section>
 
-        <section id="chrome" class="project-section">
-            <h1>Chrome Support Intern</h1>
-            <img src="../src/eths.png" alt="Chrome">
-            <p>I was an intern at my high school's Chromebook help desk from 2021 to 2024.</p>
-            <p>Responsibilities:</p>
-            <p>    Delivered front line customer support within the school's central help desk to support students and staff with their Chromebook computers</p>
-            <p>    Checked in/out loaners and customer devices coming in/out of repair</p>
-            <p>    Diagnosed and performed troubleshooting on out-of-warranty Chromebooks</p>
-            <p>    Performed technical repairs through software updates and replacement of major parts including batteries, screens, keyboards, motherboards, and other modular components</p>
+         <section id="ctf" class="project-section">
+            <h1>Louvre Capture The Flag</h1>
+            <b>Python, Flask, Linux, Git</b>
+            <video width=75% height=auto controls>
+            <source src="../src/louvre-video.mp4" type="video/mp4">
+            </video>
+            <p>This is a 9-challenge CTF quest where users learn about cybersecurity domains by playing a game where they attempt to pen-test the Louvre.</p>
+            <p>This was a group project. My role was organizing the team, coming up with the challenge ideas, programming 7 of the challenges,
+                 programming the introduction page and map, setting up the UI, handling input validation, and initializing the site with the necessary Flask
+                  frameworks and testing documents. I also collaborated with others to review code changes, and respond to feedback on my own changes.</p>
+        </section>
+
+        <section id="hshacks" class="project-section">
+            <h1>Veterans x Volunteers Hackathon Submission</h1>
+            <b>HTML, CSS, JS, Google Apps Script</b>
+            <img src="../src/vxv.png" alt="Hackathon Photo">
+            <p>This project was made in a team of 3 at a 12-hour hackathon. We made a website for a nonprofit organization assisting veterans that allowed veterans and volunteers to sign 
+                up for events to benefit their mental health. The program included automatically sending the signup information to a 
+                spreadsheet that generated buttons to automatically mass email participants of a given event. We ended up winning
+                 first place in the hackathon.</p>
+        </section>
+
+        <section id="beans" class="project-section">
+            <h1>Crop Counter for Brazilian Nonprofit</h1>
+            <b>Python, various LLM APIs, Google Sheets scripts</b>
+            <img src="../src/beans.png" alt="truck full of castor beans">
+            <p>As a UIUC Grainger Career Scholar, I worked in a group of four to research the viability of using AI to count crops.</p>
+            <p> This was part of a partnership with Toca, a Brazilian nonprofit organization that supports family farming. Many family farmers never learn basic math, reading, or technology skills, which makes them reliant on others to calculate the amount of castor beans that they've produced. </p>
+            <p> My group of 4 researched different AI tools and methods to determine the easiest and most accurate way to calculate the mass of a pile of beans (like the one in the image), and presented our findings and analysis to the organization.</p>
+            <p>Challenges:</p>
+            <p>Finding an AI model that could recognize and count so many items; especially since the beans are natural shapes rather than all looking the same, it was difficult for models to recognize them. We addressed this by expanding our search for models, as well as by taking different approaches such as estimating the area a pile took up and using that for our calculations.</p>
+            <p>Getting an estimate for the actual weight of the beans,; the nonprofit didn't have any weight estimates, and the weight of castor beans varies based on factors that we couldn't access, such as humidity. We addressed this by creating a tool that allowed the nonprofit to weigh one batch of beans and input the result, which then generated statistics on the accuracy of each of our solutions.</p>
+        </section>
+        
+        <section id="asgard" class="project-section">
+            <h1>Asgard</h1>
+            <b>Python, Flask, HTML, CSS, JS</b>
+            <img src="../src/asgard.png" alt="">
+            <p>This was for my internship at Loyola Chicago. I made the frontend of a site to which users can upload their computer
+                 vision models to test how they run on a cluster of low-powered machines. This was for research I was doing at Loyola
+                  University Chicago's software and systems laboratory. I was also involved with setting up the machine cluster.</p>
+        </section>
+
+        <section id="124" class="project-section">
+            <h1>CS 124 Project</h1>
+            <b>Android Studio, Kotlin, Git</b>
+            <img src="../src/124.png" alt="124 logo">
+            <p>For my intro CS class, I coded features for an app that displayed different clubs at UIUC. I implemented a search functionality, sorting, and the ability to star courses.</p>
+        </section>
+
+        <section id="128" class="project-section">
+            <h1>CS 128 Projects</h1>
+            <b>C++</b>
+            <img src="../src/128.png" alt="">
+            <p>I completed various projects for my intro CS course.</p>
+            <p>To learn about dynamic memory, I made an elementary database system with functionality to add, remove, and print tables, rows, and columns.</p>
+            <p>I also made an application to analyze a DNA sample (stored as a linked list) and determine who it belongs to.</p>
+            <p>Additionally, I made an application for content-aware image resizing using the seam carving method.  I worked with dynamic memory, 2D arrays, and learned to optimize the algorithm to find the ideal way to cut the image.</p>
+        </section>
+
+        <section id="225" class="project-section">
+            <h1>CS 225 Projects</h1>
+            <b>C++</b>
+            <img src="../src/maze.gif" alt="">
+            <p>I completed various projects for my Data Structures course.</p>
+            <p>I made a sticker application to explore image processing in C++, use the HSL color space, and explore memory management.</p>
+            <p>I wrote a template List class to learn to manipulate linked memory by writing functions to modify linked lists, practice using templates, and get familiar with iterators.</p>
+            <p>I made a program that constructs images out of other images to learn about k-d trees, implement and use a nearest neighbor search (NNS) algorithm, and practice using templates and const-correctness.</p>
+            <p>I made a program to efficiently traverse and fill in an image based on the original image's colors.</p>
+            <p>I made a maze generator and solver to implement the disjoint sets data structure.</p>
+            <p>I also made a tile puzzle program, practicing working with a graph that is to large too store completely in memory, using graph algorithms, and implementing algorithms from public sources documents.</p>
+        </section>
+
+        <section id="ai" class="project-section">
+            <h1>AI Projects</h1>
+            <b>Python</b>
+            <img src="../src/evolution.gif" alt="">
+            <p>I made a series of AI projects for fun on my own time.</p>
+            <p>I made an image generator to experiment with how models measure distance and figure out how to optimize generation speed. The results are in the image.</p>
+            <p>I also made a TED talk generator based on Disney songs, that used Markov chains to generate its own speech. I also experimented with how the model could be poisoned with false data.</p>
+            <p>Additionally, I implemented the Adagrad and SGD algorithms in Python to learn more about how they worked.</p>
         </section>
 
     </div>
