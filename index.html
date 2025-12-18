@@ -259,8 +259,43 @@
             margin-top: 25px;
             box-shadow: 0 2px 4px rgba(0,0,0,0.5);
             
-            /* UPDATED: Add transition for smooth color changing */
             transition: border-bottom-color 0.8s ease; 
+        }
+
+        .click-hint {
+            position: absolute;
+            top: -40px;
+            background: var(--text-gold);
+            color: #1a1a1a;
+            padding: 5px 12px;
+            border-radius: 4px;
+            font-size: 0.8rem;
+            font-weight: bold;
+            text-transform: uppercase;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.5);
+            white-space: nowrap;
+            z-index: 10;
+            pointer-events: none;
+            animation: bounce 2s infinite;
+            opacity: 0;
+            transition: opacity 0.8s ease;
+            pointer-events: none;
+        }
+
+        .click-hint.show {
+            opacity: 1;
+        }
+
+         
+        /* Tip: A little bounce to catch the eye */
+        @keyframes bounce {
+            0%, 20%, 50%, 80%, 100% {transform: translateY(0);}
+            40% {transform: translateY(-10px);}
+            60% {transform: translateY(-5px);}
+        }
+
+        .fade-out {
+            opacity: 0 !important;
         }
 
     </style>
@@ -284,9 +319,7 @@
     </div>
 
 <script>
-        // ==========================================
         // DATA CONFIGURATION
-        // ==========================================
         const galleryData = [
             {
                 id: 'About me',
@@ -431,19 +464,19 @@
                         link: 'awards.html#james'
                     },
                     { 
-                        src: 'src/grainger.png', 
-                        title: 'National Cyber Scholar', 
+                        src: 'src/NCSF.png', 
+                        title: 'National Cyber Scholar with Honors', 
                         details: 'National award for cybersecurity talent.', 
                         link: 'awards.html#cyberscholar'
                     },
                     { 
-                        src: 'src/grainger.png', 
+                        src: 'src/vxv.png', 
                         title: 'HsHacks Winner', 
                         details: 'Won a hackathon.', 
                         link: 'awards.html#hshacks'
                     },
                     { 
-                        src: 'src/grainger.png', 
+                        src: 'src/iss.png', 
                         title: 'Illinois State Scholar', 
                         details: 'Selected as an Illinois State Scholar.', 
                         link: 'awards.html#iss'
@@ -455,17 +488,36 @@
                         link: 'awards.html#ms'
                     },
                     { 
-                        src: 'src/grainger.png', 
+                        src: 'src/desmos.png', 
                         title: 'Desmos Global Graphing Art Contest Finalist', 
                         details: 'Selected out of 10,000 entries for my blending of math and art.', 
                         link: 'awards.html#desmos'
                     },
                     { 
-                        src: 'src/grainger.png', 
+                        src: 'src/naqt.png', 
                         title: 'Social Science and Art History Knowledge', 
                         details: 'Ranked top 20 in the country for social science and visual art by National Academic Quiz Tournaments.', 
                         link: 'awards.html#naqt'
                     },
+                ]
+            },
+            {
+                id: 'Contact',
+                title: 'Contact',
+                ropeColor: '#FF5F05',
+                items: [
+                    { 
+                        src: 'src/email.png',
+                        title: 'Email', 
+                        details: 'Feel free to reach out for opportunities or collaborations at annacg4@illinois.edu', 
+                        link: 'mailto:annacg4@illinois.edu' 
+                    },
+                    { 
+                        src: 'src/linkedin.png',
+                        title: 'LinkedIn', 
+                        details: 'Connect with me on LinkedIn!', 
+                        link: 'https://www.linkedin.com/in/anna-grigorescu' 
+                    }
                 ]
             },
         ];
@@ -495,15 +547,22 @@
             // Art Container
             const artGroup = document.createElement('div');
             artGroup.className = 'art-group';
-
-            section.items.forEach(item => {
+            section.items.forEach((item, index) => {
                 const artPiece = document.createElement('div');
                 artPiece.className = 'art-piece';
 
-                // 3. UPDATED HTML STRUCTURE:
-                // Changed <div class="frame"> to <a href="..." class="frame">
+                const isExternal = item.link.startsWith('http') || item.link.startsWith('mailto');
+                const finalHref = isExternal ? item.link : `details/${item.link}`;
+                const target = isExternal ? 'target="_blank"' : '';
+
+                let hintHTML = '';
+                if (section.id !== 'About me' && section.id !== 'Contact' && index === 0) {
+                    hintHTML = `<div class="click-hint section-hint">Click for details!</div>`;
+                }
+
                 artPiece.innerHTML = `
-                    <a href="details/${item.link}" class="frame">
+                    <a href="${finalHref}" ${target} class="frame">
+                        ${hintHTML}
                         <img src="${item.src}" alt="${item.title}">
                     </a>
                     <div class="plaque">
@@ -515,7 +574,6 @@
                 `;
                 artGroup.appendChild(artPiece);
             });
-
             sectionDiv.appendChild(artGroup);
             track.appendChild(sectionDiv);
         });
@@ -554,6 +612,44 @@
         }
 
         animateGallery();
+
+        let isScrolling;
+        let fadeOutTimer; // New timer to handle the disappearance
+
+        function handleHintVisibility() {
+            const allHints = document.querySelectorAll('.section-hint');
+            
+            // 1. Hide everything immediately as soon as the user moves
+            allHints.forEach(hint => hint.classList.remove('show'));
+            
+            window.clearTimeout(isScrolling);
+            window.clearTimeout(fadeOutTimer); // Clear the disappearance timer
+
+            // 2. Wait for the user to stop scrolling
+            isScrolling = setTimeout(() => {
+                const center = window.innerWidth / 2;
+                const sections = document.querySelectorAll('.gallery-section');
+
+                sections.forEach(section => {
+                    const rect = section.getBoundingClientRect();
+                    if (rect.left <= center && rect.right >= center) {
+                        const hint = section.querySelector('.section-hint');
+                        if (hint) {
+                            // 3. Show the hint
+                            hint.classList.add('show');
+
+                            // 4. Set a timer to make it go away after 2.5 seconds
+                            fadeOutTimer = setTimeout(() => {
+                                hint.classList.remove('show');
+                            }, 2500); 
+                        }
+                    }
+                });
+            }, 500); 
+        }
+
+        // Keep the event listener at the bottom
+        window.addEventListener('scroll', handleHintVisibility, { passive: true });
 
     </script>
 </body>
