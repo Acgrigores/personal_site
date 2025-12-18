@@ -7,58 +7,38 @@
     <style>
         :root {
             /* Monochromatic Wall Color */
-            --wall-color: #2c2c2c;
-            --floor-color: #1a1a1a;
+            --wall-color: #ddc7a0;
+            --floor-color: #2c1900;
             --frame-gold: #bf953f;
             --rope-red: #800000; /* This is now the dynamic variable */
-            --text-gold: #fcf6ba;
+            --text-gold: #332200;
         }
 
+        /* 1. Force the custom cursor on every single element */
         * {
             box-sizing: border-box;
             margin: 0;
             padding: 0;
+            /* This is an encoded 32x32 black magnifying glass icon */
+            cursor: url('src/brush.png') 0 0, auto !important;
         }
 
-        body {
-            font-family: 'Georgia', serif;
-            background-color: var(--wall-color);
-            color: white;
-            overflow-x: auto; 
-            overflow-y: hidden;
-            height: 100vh;
-            width: 100vw;
-            white-space: nowrap; 
+        /* 2. Apply it specifically to clickable items so they don't switch to a hand */
+        nav a, .frame, .plaque, button {
+            cursor: url('src/brush.png') 0 0, pointer !important;
         }
 
-        /* --- Navigation --- */
-        nav {
-            position: fixed;
-            top: 0;
-            left: 0;
-            width: 100%;
-            background: linear-gradient(to bottom, rgba(0,0,0,1), transparent);
-            padding: 15px;
-            z-index: 1000;
-            display: flex;
-            justify-content: center;
-            gap: 30px;
-            height: 70px;
-        }
-
-        nav a {
-            color: var(--text-gold);
-            text-decoration: none;
-            font-size: 0.9rem;
-            text-transform: uppercase;
-            letter-spacing: 2px;
-            transition: opacity 0.3s;
-            cursor: pointer;
-            text-shadow: 0 2px 4px rgba(0,0,0,0.8);
-        }
-
+        /* 3. Your Hover Glow Effect */
         nav a:hover {
-            opacity: 0.7;
+            background: radial-gradient(
+                ellipse at center, 
+                rgba(255, 215, 0, 0.5) 0%, 
+                rgba(212, 175, 55, 0.15) 45%, 
+                transparent 70%
+            );
+            transform: scale(1.05);
+            opacity: 1;
+            border-radius: 50px; 
         }
 
         /* --- Main Gallery Container --- */
@@ -82,8 +62,6 @@
             padding: 0 100px;
             padding-top: 90px; 
             
-            border-right: 1px solid rgba(255,255,255,0.05);
-            
             /* UPDATED: Removed gradient for flat monochrome look */
             background-color: var(--wall-color);
             
@@ -97,7 +75,7 @@
             
             font-size: 3.5rem;
             color: var(--text-gold);
-            text-shadow: 0 4px 10px rgba(0,0,0,0.9);
+            /* text-shadow: 0 4px 10px rgba(0,0,0,0.9); */
             font-family: 'Impact', sans-serif;
             text-transform: uppercase;
             white-space: nowrap;
@@ -139,7 +117,7 @@
                 0 10px 30px rgba(0,0,0,0.5),   
                 0 0 0 4px #8a6e45;            
             background-color: #000;
-            cursor: pointer;
+            /* cursor: pointer; */
             position: relative;
             transform-style: preserve-3d;
             will-change: transform;
@@ -149,7 +127,7 @@
 
         .frame:hover {
             transform: perspective(1000px) rotateY(var(--rot, 0deg)) scale(1.05);
-            box-shadow: 0 20px 50px rgba(0,0,0,0.8), 0 0 0 4px #bf953f; 
+            box-shadow: 0 20px 50px #bf953f, 0 0 0 4px #bf953f; 
             transition: transform 0.3s ease;
         }
 
@@ -186,7 +164,7 @@
         }
 
         .plaque-inner {
-            background-color: #1a1a1a;
+            background-color: #230c00;
             padding: 12px;
             text-align: center;
             min-height: 100%;
@@ -266,7 +244,7 @@
             position: absolute;
             top: -40px;
             background: var(--text-gold);
-            color: #1a1a1a;
+            color: #ffcc32;
             padding: 5px 12px;
             border-radius: 4px;
             font-size: 0.8rem;
