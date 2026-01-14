@@ -3,24 +3,18 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>The Gallery Portfolio</title>
+    <title>Anna's Portfolio</title>
     <style>
         :root {
-            /* Monochromatic Wall Color */
             --wall-color: #ddc7a0;
             --floor-color: #2c1900;
             --frame-gold: #bf953f;
-            --rope-red: #800000; /* This is now the dynamic variable */
+            --rope-red: #800000;
             --text-gold: #332200;
         }
-
-        /* Custom cursor*/
-        /* * {
-            box-sizing: border-box;
-            margin: 0;
-            padding: 0;
-            cursor: url('src/brush.png') 0 0, auto !important;
-        } */
+        body, html {
+            background-color: var(--wall-color); 
+        }
 
         nav {
             position: fixed;
@@ -35,16 +29,29 @@
             gap: 30px;
             height: 70px;
         }
+        nav a {
+            text-decoration: none;
+            color: white;
+            
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            
+            /* 2. Add equal padding to define the hover area */
+            padding: 10px 20px;
+            
+            /* 3. Smooth transition for the effect */
+            transition: all 0.3s ease;
+        }
 
         nav a:hover {
             background: radial-gradient(
                 ellipse at center, 
-                rgba(255, 215, 0, 0.5) 0%, 
-                rgba(212, 175, 55, 0.15) 45%, 
+                rgba(255, 215, 0, 0.4) 0%, 
+                rgba(212, 175, 55, 0.1) 50%, 
                 transparent 70%
             );
             transform: scale(1.05);
-            opacity: 1;
             border-radius: 50px; 
         }
 
@@ -82,7 +89,7 @@
             
             font-size: 3.5rem;
             color: var(--text-gold);
-            /* text-shadow: 0 4px 10px rgba(0,0,0,0.9); */
+            text-shadow: 0 1px 3px rgba(0,0,0,0.9);
             font-family: 'Impact', sans-serif;
             text-transform: uppercase;
             white-space: nowrap;
