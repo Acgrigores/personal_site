@@ -14,21 +14,28 @@
             --text-gold: #332200;
         }
 
-        /* 1. Force the custom cursor on every single element */
-        * {
+        /* Custom cursor*/
+        /* * {
             box-sizing: border-box;
             margin: 0;
             padding: 0;
-            /* This is an encoded 32x32 black magnifying glass icon */
             cursor: url('src/brush.png') 0 0, auto !important;
+        } */
+
+        nav {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            background: linear-gradient(to bottom, rgba(0,0,0,1), transparent);
+            padding: 15px;
+            z-index: 1000;
+            display: flex;
+            justify-content: center;
+            gap: 30px;
+            height: 70px;
         }
 
-        /* 2. Apply it specifically to clickable items so they don't switch to a hand */
-        nav a, .frame, .plaque, button {
-            cursor: url('src/brush.png') 0 0, pointer !important;
-        }
-
-        /* 3. Your Hover Glow Effect */
         nav a:hover {
             background: radial-gradient(
                 ellipse at center, 
