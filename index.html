@@ -13,8 +13,13 @@
             --text-gold: #332200;
         }
         body, html {
+            cursor: url('src/splatter.png'), auto;
             overflow-y: hidden;
             background-color: var(--wall-color); 
+        }
+        nav a:hover, 
+        .frame:hover {
+            cursor: url('src/brush.png'), auto;
         }
 
         nav {
@@ -34,15 +39,10 @@
         nav a {
             text-decoration: none;
             color: white;
-            
             display: inline-flex;
             align-items: center;
             justify-content: center;
-            
-            /* 2. Add equal padding to define the hover area */
             padding: 10px 20px;
-            
-            /* 3. Smooth transition for the effect */
             transition: all 0.3s ease;
         }
 
@@ -57,17 +57,15 @@
             border-radius: 50px; 
         }
 
-        /* --- Main Gallery Container --- */
         #gallery-track {
             display: flex;
             flex-direction: row;
             height: 100vh;
             width: max-content; 
-            padding-left: 45vw;
+            padding-left: 15vw;
             padding-right: 45vw;
         }
 
-        /* --- Section Styling --- */
         .gallery-section {
             display: flex;
             flex-direction: column;
@@ -77,14 +75,11 @@
             position: relative;
             padding: 0 200px;
             padding-top: 90px; 
-            
-            /* UPDATED: Removed gradient for flat monochrome look */
             background-color: var(--wall-color);
             
             height: 100%;
         }
 
-        /* TITLE STYLING */
         .section-floating-title {
             position: relative; 
             margin-bottom: 40px; 
@@ -106,7 +101,6 @@
             flex-shrink: 0; 
         }
 
-        /* --- The Art Piece Container --- */
         .art-group {
             display: flex;
             gap: 120px; 
@@ -125,7 +119,6 @@
             min-width: 220px;
         }
 
-        /* Frame Styling */
         .frame {
             display: inline-block;
             border: 12px solid #4a3b2a; 
@@ -134,7 +127,6 @@
                 0 10px 30px rgba(0,0,0,0.5),   
                 0 0 0 4px #8a6e45;            
             background-color: #000;
-            /* cursor: pointer; */
             position: relative;
             transform-style: preserve-3d;
             will-change: transform;
@@ -157,7 +149,6 @@
             -webkit-user-drag: none;
         }
 
-        /* Lighting Effect */
         .frame::after {
             content: '';
             position: absolute;
@@ -166,7 +157,6 @@
             pointer-events: none;
         }
 
-        /* Plaque Styling */
         .plaque {
             margin-top: 25px;
             background: linear-gradient(45deg, #bf953f, #fcf6ba, #b38728, #fbf5b7, #aa771c);
