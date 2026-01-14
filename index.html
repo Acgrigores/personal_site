@@ -13,21 +13,23 @@
             --text-gold: #332200;
         }
         body, html {
+            overflow-y: hidden;
             background-color: var(--wall-color); 
         }
 
         nav {
+            gap: 10px;
+            padding: 10px;
+            height: auto;
+            flex-wrap: wrap;
             position: fixed;
             top: 0;
             left: 0;
             width: 100%;
             background: linear-gradient(to bottom, rgba(0,0,0,1), transparent);
-            padding: 15px;
             z-index: 1000;
             display: flex;
             justify-content: center;
-            gap: 30px;
-            height: 70px;
         }
         nav a {
             text-decoration: none;
@@ -73,7 +75,7 @@
             align-items: center; 
             
             position: relative;
-            padding: 0 100px;
+            padding: 0 200px;
             padding-top: 90px; 
             
             /* UPDATED: Removed gradient for flat monochrome look */
@@ -86,6 +88,7 @@
         .section-floating-title {
             position: relative; 
             margin-bottom: 40px; 
+            align-self: flex-start;
             
             font-size: 3.5rem;
             color: var(--text-gold);
