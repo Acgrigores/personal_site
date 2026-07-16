@@ -1,0 +1,64 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512" width="100%" height="100%">
+  <defs>
+    <!-- Rich depth radial gradient for the background -->
+    <radialGradient id="bg-grad" cx="50%" cy="40%" r="60%">
+      <stop offset="0%" stop-color="#555c53" /> <!-- Gallery Slate -->
+      <stop offset="100%" stop-color="#2D1A12" /> <!-- Rich Dark Brown -->
+    </radialGradient>
+
+    <!-- Metallic Gold Gradient for the Brush Ferrule & Accents -->
+    <linearGradient id="gold-grad" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#D4AF37" /> <!-- Ornate Gold -->
+      <stop offset="50%" stop-color="#E8C88B" /> <!-- Champagne Gold -->
+      <stop offset="100%" stop-color="#B38728" /> <!-- Deep Gold shadow -->
+    </linearGradient>
+
+    <!-- Pine Wood Handle Gradient -->
+    <linearGradient id="wood-grad" x1="0%" y1="0%" x2="100%" y2="0%">
+      <stop offset="0%" stop-color="#1B3B2B" /> <!-- Deep Pine -->
+      <stop offset="50%" stop-color="#2c5e45" /> <!-- Lighter Pine highlight -->
+      <stop offset="100%" stop-color="#0f241a" /> <!-- Shadow Pine -->
+    </linearGradient>
+  </defs>
+
+  <!-- Rounded Squircle Canvas Base -->
+  <rect width="512" height="512" rx="112" fill="url(#bg-grad)" stroke="#E8C88B" stroke-width="8" />
+
+  <g transform="translate(0, 5)">
+    <!-- LEFT CODE BRACKET (<) - Muted Slate with Gold Highlight -->
+    <path d="M 140 180 L 50 256 L 140 332" 
+          fill="none" 
+          stroke="#8CA399" 
+          stroke-width="32" 
+          stroke-linecap="round" 
+          stroke-linejoin="round" />
+          
+    <!-- RIGHT CODE BRACKET (>) - Muted Slate with Gold Highlight -->
+    <path d="M 372 180 L 462 256 L 372 332" 
+          fill="none" 
+          stroke="#8CA399" 
+          stroke-width="32" 
+          stroke-linecap="round" 
+          stroke-linejoin="round" />
+  </g>
+
+  <!-- THE CRAFT: Paintbrush / Code Stylus Centered -->
+  <g transform="translate(256, 260)">
+    <!-- 1. Wooden Handle (Pointing down/left) -->
+    <path d="M -25 40 L 25 40 L 45 150 L -45 150 Z" fill="url(#wood-grad)" />
+    
+    <!-- 2. Ornate Gold Ferrule (Metal band) -->
+    <rect x="-40" y="-10" width="80" height="50" rx="4" fill="url(#gold-grad)" />
+    <line x1="-40" y1="15" x2="40" y2="15" stroke="#2D1A12" stroke-width="4" opacity="0.4" />
+    
+    <!-- 3. Upper Bristles (Pine green transitioning to golden paint tip) -->
+    <path d="M -40 -10 C -40 -60, -20 -110, 0 -150 C 20 -110, 40 -60, 40 -10 Z" fill="#1B3B2B" />
+    
+    <!-- 4. Splat / Dip of Champagne Gold Paint on the Tip -->
+    <path d="M -22 -65 C -12 -100, -8 -130, 0 -150 C 8 -130, 12 -100, 22 -65 C 10 -55, -10 -55, -22 -65 Z" fill="url(#gold-grad)" />
+    
+    <!-- 5. Dynamic Paint Drop (Ready to create) -->
+    <circle cx="0" cy="-185" r="16" fill="url(#gold-grad)" />
+  </g>
+
+</svg>
