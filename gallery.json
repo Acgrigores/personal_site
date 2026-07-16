@@ -7,7 +7,7 @@
       { 
         "src": "src/anna.png", 
         "title": "Welcome!", 
-        "details": "I'm Anna, a computer science student at UIUC. This gallery (which draws inspiration from my art history minor) is an overview of my experience and projects.",
+        "details": "I'm Anna Grigorescu, a computer science student at UIUC. This gallery (which draws inspiration from my art history minor) is an overview of my experience and projects.",
         "link": "../index.html" 
       }
     ]
