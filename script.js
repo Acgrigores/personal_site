@@ -301,14 +301,35 @@ function animateGallery() {
         el.style.setProperty('--rot', `${finalRot}deg`);
     });
 
-    // 2. Handle Rope Color Change
-    sections.forEach(section => {
+    // 2. Handle Rope Color, Early Motion Light Triggers, & Persistent Left Lighting
+    let activeSectionIndex = -1;
+
+    // First, find which section is currently active based on an early trigger (right-hand threshold)
+    sections.forEach((section, index) => {
         const rect = section.getBoundingClientRect();
-        if (rect.left <= center && rect.right >= center) {
-            const sectionData = galleryData.find(d => d.id === section.id);
-            if (sectionData && sectionData.ropeColor) {
-                document.documentElement.style.setProperty('--rope-red', sectionData.ropeColor);
+        
+        // Turns on sooner: triggers when the section enters 75% of the screen width from the right
+        if (rect.left <= window.innerWidth * 0.75 && rect.right >= window.innerWidth * 0.25) {
+            activeSectionIndex = index;
+        }
+    });
+
+    // Apply lighting states based on index position
+    sections.forEach((section, index) => {
+        // If it's the active section, OR any section to the left of it, keep the lights on!
+        if (index <= activeSectionIndex && activeSectionIndex !== -1) {
+            section.classList.add('active-light');
+            
+            // Set rope color to match the current active section
+            if (index === activeSectionIndex) {
+                const sectionData = galleryData.find(d => d.id === section.id);
+                if (sectionData && sectionData.ropeColor) {
+                    document.documentElement.style.setProperty('--rope-red', sectionData.ropeColor);
+                }
             }
+        } else {
+            // Keep sections to the right dark
+            section.classList.remove('active-light');
         }
     });
 

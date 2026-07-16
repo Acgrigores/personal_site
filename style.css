@@ -134,14 +134,12 @@ nav a:hover {
 .section-floating-title {
     position: relative; 
     margin-bottom: 45px; 
-    align-self: flex-start; /* Restores the sophisticated left alignment */
+    align-self: flex-start; 
     font-size: 3.5rem;
     color: var(--text-gold); 
     
-    /* Glowing text drop-shadow to catch the spotlight beams */
-    text-shadow: 
-        0 2px 4px rgba(27, 59, 43, 0.25),
-        0 0 25px rgba(254, 241, 201, 0.85);
+    /* Subtle physical depth shadow by default (no light-beam glow yet) */
+    text-shadow: 0 2px 4px rgba(0, 0, 0, 0.5);
         
     font-family: 'Impact', sans-serif;
     text-transform: uppercase;
@@ -156,6 +154,9 @@ nav a:hover {
     
     padding-bottom: 5px;
     flex-shrink: 0; 
+
+    /* Smooth transition for when the light turns on */
+    transition: text-shadow 1.2s cubic-bezier(0.25, 1, 0.5, 1);
 }
 
 /* The Physical Brass Track-Light Fixture - Now centered above the title */
@@ -174,35 +175,36 @@ nav a:hover {
     z-index: 10;
 }
 /* The Volumetric Conical Light Beam - Wide, Feathered, and Unconstrained */
+/* The Volumetric Conical Light Beam - Wide, Feathered, and Unconstrained */
 .section-floating-title::after {
     content: '';
     position: absolute;
-    top: -84px; /* Starts directly below the fixture */
+    top: -84px; 
     left: 50%;
     transform: translateX(-50%);
-    width: 600px; /* Oversized canvas so the wide angles are never cropped */
+    width: 600px; 
     height: 190px; 
     
-    /* Sweeps a wide 140-degree field (from 110deg to 250deg) centered at 180deg (straight down) */
     background: conic-gradient(
         from 110deg at 50% 0%,
         transparent 0deg,
-        rgba(254, 241, 201, 0.0) 5deg,      /* Hard feather starts */
-        rgba(254, 241, 201, 0.35) 45deg,    /* Smooth transition to light core */
-        rgba(254, 241, 201, 0.35) 95deg,    /* Main bright center area */
-        rgba(254, 241, 201, 0.0) 135deg,    /* Hard feather ends */
+        rgba(254, 241, 201, 0.0) 5deg,      
+        rgba(254, 241, 201, 0.35) 45deg,    
+        rgba(254, 241, 201, 0.35) 95deg,    
+        rgba(254, 241, 201, 0.0) 135deg,    
         transparent 140deg
     );
     
-    /* Smooth vertical fadeout so it dissipates naturally */
     -webkit-mask-image: linear-gradient(to bottom, black 20%, transparent 90%);
     mask-image: linear-gradient(to bottom, black 20%, transparent 90%);
     
-    /* Slightly higher blur to completely blend the gradient transitions */
     filter: blur(5px); 
-    
     pointer-events: none;
     z-index: 1;
+
+    /* Start turned OFF and fade in smoothly */
+    opacity: 0;
+    transition: opacity 1.2s cubic-bezier(0.25, 1, 0.5, 1);
 }
 
 .art-group {
@@ -708,3 +710,71 @@ body::after {
     border-radius: 50%;
     z-index: 0;
 }
+/* --- 1. Base Ambient Dark Mask (Default State: Off/Dark) --- */
+.gallery-section::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    
+    /* Deep shadowy vignette */
+    background: radial-gradient(
+        ellipse at 50% 30%, 
+        rgba(0, 0, 0, 0.2) 0%, 
+        rgba(0, 0, 0, 0.8) 70%,
+        rgba(0, 0, 0, 0.95) 100%
+    );
+    
+    /* 
+       Horizontal Mask: Instead of fading to 'transparent' (0% shadow), 
+       we fade to 'rgba(0, 0, 0, 0.15)' (15% shadow). This matches the lit 
+       section's ambient level perfectly, creating a soft, continuous blend.
+    */
+    -webkit-mask-image: linear-gradient(
+        to right, 
+        rgba(0, 0, 0, 0.15) 0%, 
+        black 250px,                  /* Generous 250px feathering area */
+        black calc(100% - 250px),     
+        rgba(0, 0, 0, 0.15) 100%              
+    );
+    mask-image: linear-gradient(
+        to right, 
+        rgba(0, 0, 0, 0.15) 0%, 
+        black 250px, 
+        black calc(100% - 250px), 
+        rgba(0, 0, 0, 0.15) 100%
+    );
+    
+    transition: opacity 1.2s cubic-bezier(0.25, 1, 0.5, 1);
+    z-index: 0;
+    pointer-events: none;
+}
+
+/* --- 2. Active Lit State (No masking, completely uniform shadow) --- */
+.gallery-section.active-light::before {
+    opacity: 0.15; /* Soft ambient vignette */
+    
+    /* Disable the mask so the 15% shadow runs completely solid from edge to edge */
+    -webkit-mask-image: none !important;
+    mask-image: none !important;
+}
+
+/* --- Active Light Transitions --- */
+
+/* Turn the volumetric spotlight beam ON */
+.gallery-section.active-light .section-floating-title::after {
+    opacity: 1;
+}
+
+/* Turn the bright atmospheric text glow ON */
+.gallery-section.active-light .section-floating-title {
+    text-shadow: 
+        0 2px 4px rgba(27, 59, 43, 0.25),
+        0 0 25px rgba(254, 241, 201, 0.85);
+}
+
+/* --- 3. Clean up the Adjacent Sibling Rule --- */
+/* We no longer need the complex adjacent-sibling selector override since the 
+   15% minimum boundary mask naturally handles the transition beautifully! */
