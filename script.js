@@ -65,7 +65,7 @@ function buildGalleryDOM() {
             artPiece.innerHTML = `
                 <a href="${finalHref}" ${target} class="frame">
                     ${hintHTML}
-                    <img src="${item.src}" alt="${item.title}">
+                    <img src="${item.src}" alt="${item.title}" loading="lazy">
                 </a>
                 <div class="plaque">
                     <div class="plaque-inner">

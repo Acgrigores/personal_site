@@ -186,7 +186,7 @@
   },
   {
     "id": "Contact",
-    "title": "Contact",
+    "title": "Info",
     "ropeColor": "#8CA399",
     "items": [
       { 
@@ -200,6 +200,12 @@
         "title": "LinkedIn", 
         "details": "Connect with me on LinkedIn!", 
         "link": "https://www.linkedin.com/in/anna-grigorescu" 
+      },
+      { 
+        "src": "src/resume.png",
+        "title": "Resume", 
+        "details": "View my Resume!", 
+        "link": "resume.pdf" 
       }
     ]
   }
