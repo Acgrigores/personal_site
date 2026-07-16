@@ -5,7 +5,7 @@
     "ropeColor": "#1B3B2B",
     "items": [
       { 
-        "src": "src/anna.png", 
+        "src": "./src/anna.png", 
         "title": "Welcome!", 
         "details": "I'm Anna Grigorescu, a computer science student at UIUC. This gallery (which draws inspiration from my art history minor) is an overview of my experience and projects.",
         "link": "../index.html" 
@@ -18,25 +18,25 @@
     "ropeColor": "#8CA399",
     "items": [
         { 
-        "src": "src/google.png", 
+        "src": "./src/google.png", 
         "title": "Google SWE Intern", 
         "details": "Summer 2026. Kotlin, Android, Jetpack Compose, Linux, Version Control, AI. Still completing!",
         "link": "work.html#google"
       },
       { 
-        "src": "src/google.png", 
+        "src": "./src/google.png", 
         "title": "Google ASDI Intern", 
         "details": "Summer 2025. Kotlin, Linux, Android, Jetpack Compose.",
         "link": "work.html#google"
       },
       { 
-        "src": "src/luc.png", 
+        "src": "./src/luc.png", 
         "title": "Loyola University Research Intern", 
         "details": "Summers 2022 and 2024. Python, Linux, Flask, HTML/CSS/JS, Pandas, Git", 
         "link": "work.html#luc"
       },
       { 
-        "src": "src/eths.png", 
+        "src": "./src/eths.png", 
         "title": "Chrome Support Intern", 
         "details": "2021-2024. Chromebook repair, customer service.", 
         "link": "work.html#chrome"
@@ -49,13 +49,13 @@
     "ropeColor": "#1B3B2B",
     "items": [
       { 
-        "src": "src/siebel.png", 
+        "src": "./src/siebel.png", 
         "title": "University of Illinois Urbana-Champaign", 
         "details": "Expected Graduation May 2028. 3.93 GPA. Relevant courses: Computer Architecture, Data Structures, Statistics, Linear Algebra, Calculus.", 
         "link": "education.html#uiuc"
       },
       { 
-        "src": "src/eths.png", 
+        "src": "./src/eths.png", 
         "title": "Evanston Township High School", 
         "details": "4.0 GPA. Relevant classes: Computer Science, Cybersecurity, Robotics, Calculus.", 
         "link": "education.html#eths"
@@ -68,61 +68,61 @@
     "ropeColor": "#E5C07B",
     "items": [
       { 
-        "src": "src/cc.png", 
+        "src": "./src/cc.png", 
         "title": "Google Calling Card", 
         "details": "Intern Project. Kotlin, Jetpack Compose, Design Docs, Data Services, State Management.", 
         "link": "projects.html#google"
       },
       { 
-        "src": "src/photostrip.png", 
+        "src": "./src/photostrip.png", 
         "title": "pAInt me a picture photobooth", 
         "details": "Project for UIUC's annual engineering fair on behalf of Alpha Omega Epsilon. Python, Streamlit, Vertex API.", 
         "link": "projects.html#photobooth"
       },
       { 
-        "src": "src/louvre.png", 
+        "src": "./src/louvre.png", 
         "title": "Louvre CTF Challenge", 
         "details": "Group project for a course. Python, Flask, Linux, Git.", 
         "link": "projects.html#ctf"
       },
       { 
-        "src": "src/vxv.png", 
+        "src": "./src/vxv.png", 
         "title": "HSHacks Winning Submission", 
         "details": "Hackathon project. HTML, CSS, JS, Google Apps Script.", 
         "link": "projects.html#hshacks"
       },
       { 
-        "src": "src/beans.png", 
+        "src": "./src/beans.png", 
         "title": "Castor Bean Counter", 
         "details": "Project in collaboration with a nonprofit. Python, various LLM APIs, Google Sheets scripts", 
         "link": "projects.html#beans"
       },
       { 
-        "src": "src/asgard.png", 
+        "src": "./src/asgard.png", 
         "title": "Asgard", 
         "details": "Project for my Loyola Chicago research internship. Python, Flask, HTML, CSS, JS.", 
         "link": "projects.html#asgard"
       },
       { 
-        "src": "src/124.png", 
+        "src": "./src/124.png", 
         "title": "CS 124 Project", 
         "details": "Project for my intro CS course. Kotlin, Android Studio.", 
         "link": "projects.html#124"
       },
       { 
-        "src": "src/128.png", 
+        "src": "./src/128.png", 
         "title": "CS 128 Projects", 
         "details": "Projects for my intro CS  course. C++.", 
         "link": "projects.html#128"
       },
       { 
-        "src": "src/maze.gif", 
+        "src": "./src/maze.gif", 
         "title": "CS 225 Projects", 
         "details": "Projects for my data structures course. C++.", 
         "link": "projects.html#225"
       },
       { 
-        "src": "src/evolution.gif", 
+        "src": "./src/evolution.gif", 
         "title": "AI Projects", 
         "details": "Solo projects for fun. Python.", 
         "link": "projects.html#ai"
@@ -135,49 +135,49 @@
     "ropeColor": "#1B3B2B",
     "items": [
       { 
-        "src": "src/nmsc.png", 
+        "src": "./src/nmsc.png", 
         "title": "National Merit Scholar", 
         "details": "Awarded to ~0.5% of high school seniors each year", 
         "link": "awards.html#nmsc"
       },
       { 
-        "src": "src/grainger.png", 
+        "src": "./src/grainger.png", 
         "title": "James Scholar", 
         "details": "Selected for the Honors Program within UIUC's Grainger College of Engineering.", 
         "link": "awards.html#james"
       },
       { 
-        "src": "src/NCSF.png", 
+        "src": "./src/NCSF.png", 
         "title": "National Cyber Scholar with Honors", 
         "details": "National award for cybersecurity talent.", 
         "link": "awards.html#cyberscholar"
       },
       { 
-        "src": "src/vxv.png", 
+        "src": "./src/vxv.png", 
         "title": "HsHacks Winner", 
         "details": "Won a hackathon.", 
         "link": "awards.html#hshacks"
       },
       { 
-        "src": "src/iss.png", 
+        "src": "./src/iss.png", 
         "title": "Illinois State Scholar", 
         "details": "Selected as an Illinois State Scholar.", 
         "link": "awards.html#iss"
       },
       { 
-        "src": "src/grainger.png", 
+        "src": "./src/grainger.png", 
         "title": "Matthews Scholar", 
         "details": "A UIUC award and scholarship awarded to incoming students.", 
         "link": "awards.html#ms"
       },
       { 
-        "src": "src/desmos.png", 
+        "src": "./src/desmos.png", 
         "title": "Desmos Global Graphing Art Contest Finalist", 
         "details": "Selected out of 10,000 entries for my blending of math and art.", 
         "link": "awards.html#desmos"
       },
       { 
-        "src": "src/naqt.png", 
+        "src": "./src/naqt.png", 
         "title": "Social Science and Art History Knowledge", 
         "details": "Ranked top 20 in the country for social science and visual art by National Academic Quiz Tournaments.", 
         "link": "awards.html#naqt"
@@ -190,19 +190,19 @@
     "ropeColor": "#8CA399",
     "items": [
       { 
-        "src": "src/email.png",
+        "src": "./src/email.png",
         "title": "Email", 
         "details": "Feel free to reach out for opportunities or collaborations at annacg4@illinois.edu", 
         "link": "mailto:annacg4@illinois.edu" 
       },
       { 
-        "src": "src/linkedin.png",
+        "src": "./src/linkedin.png",
         "title": "LinkedIn", 
         "details": "Connect with me on LinkedIn!", 
         "link": "https://www.linkedin.com/in/anna-grigorescu" 
       },
       { 
-        "src": "src/resume.png",
+        "src": "./src/resume.png",
         "title": "Resume", 
         "details": "View my Resume!", 
         "link": "resume.pdf" 
