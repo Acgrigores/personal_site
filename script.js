@@ -127,7 +127,7 @@ const galleryData = [
     {
         id: 'Awards',
         title: 'Awards',
-        ropeColor: '#E5C07B', // Champagne Gold
+        ropeColor: '#1B3B2B', // Pine Infusion
         items: [
             { 
                 src: 'src/nmsc.png', 

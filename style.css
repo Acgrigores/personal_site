@@ -157,6 +157,7 @@ nav a:hover {
     z-index: 10;
 }
 
+/* The Volumetric Conical Light Beam - Wide, Feathered, and Unconstrained */
 .section-floating-title::after {
     content: '';
     position: absolute;
@@ -178,7 +179,10 @@ nav a:hover {
     mask-image: linear-gradient(to bottom, black 20%, transparent 90%);
     filter: blur(5px); 
     pointer-events: none;
-    z-index: 1;
+    
+    /* Changed from 1 to -1 to place the beam behind the parent text */
+    z-index: -1;
+
     opacity: 0;
     transition: opacity 1.2s cubic-bezier(0.25, 1, 0.5, 1);
 }
