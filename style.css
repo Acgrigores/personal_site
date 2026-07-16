@@ -180,7 +180,6 @@ nav a:hover {
     filter: blur(5px); 
     pointer-events: none;
     
-    /* Changed from 1 to -1 to place the beam behind the parent text */
     z-index: -1;
 
     opacity: 0;
@@ -208,11 +207,11 @@ nav a:hover {
 .frame {
     display: inline-block;
     position: relative;
-    padding: 8px; /* Reduced padding for a slimmer profile */
+    padding: 8px;
     background-color: #000;
     
     /* 1. Thinner Gilded Wood Base Border */
-    border: 14px solid; /* Reduced from 22px to make the rectangular part less thick */
+    border: 14px solid;
     border-image: linear-gradient(
         135deg, 
         #9d701a 0%, 
@@ -223,7 +222,6 @@ nav a:hover {
         #5a4214 100%
     ) 14;
     
-    /* Layered shadows scaled down to match the new thickness */
     box-shadow: 
         inset 0 0 20px rgba(0, 0, 0, 0.95),                     
         inset 0 0 0 3px #2b1d03,                                
@@ -240,7 +238,7 @@ nav a:hover {
 .frame::before {
     content: "";
     position: absolute;
-    top: -26px; /* Adjusted downward to sit perfectly on the thinner border */
+    top: -26px;
     left: 50%;
     transform: translateX(-50%);
     width: 60px;
@@ -258,7 +256,6 @@ nav a:hover {
 .frame::after {
     content: "";
     position: absolute;
-    /* Aligned precisely to match the -14px border boundary */
     top: -14px;
     left: -14px;
     right: -14px;
@@ -278,7 +275,7 @@ nav a:hover {
         top right, 
         bottom left, 
         bottom right;
-    background-size: 32px 32px; /* Slightly smaller to seamlessly match the 14px border width */
+    background-size: 32px 32px;
     background-repeat: no-repeat;
     filter: drop-shadow(0 2px 3px rgba(0,0,0,0.5));
 }
@@ -299,7 +296,7 @@ nav a:hover {
 
 .frame img {
     display: block;
-    max-height: calc(28vh - 44px); /* Adjusted height calculation for the slimmer frame height */
+    max-height: calc(28vh - 44px);
     width: auto;
     max-width: 100%;
     object-fit: cover;
@@ -733,12 +730,6 @@ body::after {
     left: 0;
     width: 100%;
     height: 100%;
-    
-    /* 
-       Extreme contrast vignette:
-       Center starting value is kept at 45%, but the solid black shadow 
-       rushes in aggressively at 50% width and remains 100% solid to the edges.
-    */
     background: radial-gradient(
         ellipse at 50% 30%, 
         rgba(0, 0, 0, 0.45) 0%, 
@@ -746,8 +737,6 @@ body::after {
         rgba(0, 0, 0, 1) 50%,
         rgba(0, 0, 0, 1) 100%
     );
-    
-    /* Fades the edges completely to transparent (0% shadow) at the seam */
     -webkit-mask-image: linear-gradient(
         to right, 
         rgba(0, 0, 0, 0) 0%, 

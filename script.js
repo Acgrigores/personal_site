@@ -17,7 +17,6 @@ async function initGallery() {
             track.addEventListener('scroll', handleHintVisibility, { passive: true });
         }
         
-        // Start the animation loop
         animateGallery();
     } catch (error) {
         console.error("Failed to load gallery configuration data:", error);
@@ -26,7 +25,6 @@ async function initGallery() {
 
 function buildGalleryDOM() {
     galleryData.forEach(section => {
-        // Navbar Link
         const link = document.createElement('a');
         link.innerText = section.title;
         link.onclick = () => {
@@ -150,7 +148,6 @@ function animateGallery() {
     requestAnimationFrame(animateGallery);
 }
 
-// VISIBILITY OF POP-UP HINTS ON SCROLL
 let isScrolling;
 let fadeOutTimer;
 
@@ -180,5 +177,4 @@ function handleHintVisibility() {
     }, 500); 
 }
 
-// Start everything up
 initGallery();
