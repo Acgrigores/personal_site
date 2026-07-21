@@ -25,6 +25,31 @@ html, body {
     -ms-overflow-style: none !important; 
 }
 
+#splash-overlay {
+  position: fixed;
+  inset: 0; /* top: 0, right: 0, bottom: 0, left: 0 */
+  width: 100vw;
+  height: 100vh;
+  z-index: 9999;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  overflow: hidden;
+  transition: opacity 0.5s ease;
+}
+
+#splash-overlay img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover; /* forces GIF to cover screen seamlessly */
+}
+
+/* Fades out the overlay and allows clicking elements underneath */
+#splash-overlay.hidden {
+  opacity: 0;
+  pointer-events: none;
+}
+
 ::-webkit-scrollbar {
     display: none !important;
     width: 0 !important;

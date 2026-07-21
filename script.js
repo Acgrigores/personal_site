@@ -177,4 +177,25 @@ function handleHintVisibility() {
     }, 500); 
 }
 
+window.addEventListener('DOMContentLoaded', () => {
+  const splash = document.getElementById('splash-overlay');
+  const splashImg = splash ? splash.querySelector('img') : null;
+
+  if (splashImg) {
+    // Force the GIF to restart from frame 0 by appending a timestamp
+    const originalSrc = splashImg.src.split('?')[0];
+    splashImg.src = `${originalSrc}?t=${Date.now()}`;
+  }
+
+  if (splash) {
+    setTimeout(() => {
+      splash.classList.add('hidden');
+      
+      setTimeout(() => {
+        splash.style.display = 'none';
+      }, 500);
+    }, 2000);
+  }
+});
+
 initGallery();
