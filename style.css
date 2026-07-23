@@ -122,6 +122,37 @@ nav a:hover {
     text-shadow: none; 
 }
 
+.gallery-container {
+  position: relative;
+  overflow: hidden;
+}
+
+/* Ensure stanchions remain in front of the cat */
+.stanchions {
+  position: absolute;
+  z-index: 10;
+  pointer-events: none;
+}
+
+#gallery-cat {
+  position: absolute;
+  z-index: 5; /* Behind stanchions (10), above floor background */
+  width: 120px; /* Adjust scale as needed */
+  height: auto;
+  pointer-events: none;
+  /* Align bottom edge of cat image to its positioning coordinates */
+  transform-origin: bottom center; 
+  will-change: left;
+}
+
+#gallery-cat.facing-left {
+  transform: scaleX(-1);
+}
+
+#gallery-cat.facing-right {
+  transform: scaleX(1);
+}
+
 /* --- Gallery Layout --- */
 #gallery-track {
     display: flex;

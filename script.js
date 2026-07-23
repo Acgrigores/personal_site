@@ -198,4 +198,95 @@ window.addEventListener('DOMContentLoaded', () => {
   }
 });
 
+document.addEventListener("DOMContentLoaded", () => {
+  const gallery = document.querySelector(".gallery-container") || document.body;
+
+  // Create cat element
+  const cat = document.createElement("img");
+  cat.src = "big-src/walkingcat.GIF";
+  cat.id = "gallery-cat";
+  cat.alt = "Walking Cat";
+
+  const galleryHeight = gallery.offsetHeight || 500;
+  const FLOOR_Y = galleryHeight - 100;
+
+  // Set initial cat coordinates on the ground
+  let catX = 100;
+  const catY = FLOOR_Y;
+
+  cat.style.left = `${catX}px`;
+  cat.style.top = `${catY}px`;
+
+  gallery.appendChild(cat);
+
+  // Movement & delay variables
+  const MAX_SPEED = 1.2;
+  let targetX = catX;
+
+  let moveTimeout = null;
+  let initialMouseSide = null;
+  let pendingTargetX = null;
+
+  // Track mouse movement (horizontal direction only)
+  window.addEventListener("mousemove", (e) => {
+    // Get mouse position relative to gallery boundary
+    const galleryRect = gallery.getBoundingClientRect();
+    const currentMouseX = e.clientX - galleryRect.left;
+
+    // Check which side of the cat the mouse is currently on
+    const currentSide = currentMouseX < catX ? "left" : "right";
+
+    if (moveTimeout) {
+      // CANCEL MOVEMENT: If mouse crosses over the cat to the opposite side during delay
+      if (currentSide !== initialMouseSide) {
+        clearTimeout(moveTimeout);
+        moveTimeout = null;
+        pendingTargetX = null;
+        return;
+      }
+      // If still on the same side, update target destination
+      pendingTargetX = currentMouseX;
+    } else {
+      // START 3-SECOND DELAY
+      initialMouseSide = currentSide;
+      pendingTargetX = currentMouseX;
+
+      moveTimeout = setTimeout(() => {
+        if (pendingTargetX !== null) {
+          targetX = pendingTargetX;
+
+          // Orient sprite toward target direction
+          if (targetX < catX) {
+            cat.classList.add("facing-left");
+            cat.classList.remove("facing-right");
+          } else {
+            cat.classList.add("facing-right");
+            cat.classList.remove("facing-left");
+          }
+        }
+        moveTimeout = null;
+      }, 3000); // 3 seconds
+    }
+  });
+
+  // Smooth Horizontal Animation Loop
+  function animateCat() {
+    const dx = targetX - catX;
+
+    // Move along X-axis only if distance exists
+    if (Math.abs(dx) > 1) {
+      // Step constrained by slow max speed
+      const moveStep = Math.sign(dx) * Math.min(Math.abs(dx), MAX_SPEED);
+      catX += moveStep;
+
+      // Update position in gallery coordinates
+      cat.style.left = `${catX}px`;
+    }
+
+    requestAnimationFrame(animateCat);
+  }
+
+  animateCat();
+});
+
 initGallery();
