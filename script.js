@@ -203,7 +203,7 @@ document.addEventListener("DOMContentLoaded", () => {
 
   // Create cat element
   const cat = document.createElement("img");
-  cat.src = "big-src/walkingcat.GIF";
+  cat.src = "./big-src/walkingcat.GIF";
   cat.id = "gallery-cat";
   cat.alt = "Walking Cat";
 
