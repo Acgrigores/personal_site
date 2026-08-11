@@ -12,6 +12,7 @@ async function initGallery() {
         }
         galleryData = await response.json();
         buildGalleryDOM();
+        
         // Listen to scroll events on the track container once it's populated
         if (track) {
             track.addEventListener('scroll', handleHintVisibility, { passive: true });
@@ -62,10 +63,23 @@ function buildGalleryDOM() {
                 hintHTML = `<div class="click-hint section-hint">Click for details!</div>`;
             }
 
+            // Explicitly force <img> for standard image formats (including .gif)
+            const srcIsImage = item.src.endsWith('.gif') || item.src.endsWith('.png') || item.src.endsWith('.jpg') || item.src.endsWith('.jpeg');
+            const isVideo = !srcIsImage && (item.src.endsWith('.mov') || item.src.endsWith('.mp4') || item.src.endsWith('.webm') || item.mediaType === 'video');
+
+            const mediaHTML = isVideo ? `
+                <video autoplay loop muted playsinline style="width: 100%; height: 100%; object-fit: cover; border-radius: inherit; display: block;" onloadedmetadata="this.muted=true">
+                    <source src="${item.src}" type="video/mp4">
+                    <source src="${item.src}" type="video/quicktime">
+                </video>
+            ` : `
+                <img src="${item.src}" alt="${item.title}" loading="lazy">
+            `;
+
             artPiece.innerHTML = `
                 <a href="${finalHref}" ${target} class="frame">
                     ${hintHTML}
-                    <img src="${item.src}" alt="${item.title}" loading="lazy">
+                    ${mediaHTML}
                 </a>
                 <div class="plaque">
                     <div class="plaque-inner">

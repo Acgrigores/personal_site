@@ -19,46 +19,68 @@
 
     <a href="../index.html" class="back-btn">← Back to Gallery</a>
 
-    <div class="container">
-
-        <section id="google" class="project-section">
-            <h1>Google ASDI Intern</h1>
-            <img src="../big-src/google.png" alt="Google Work">
-            <p>I was an Associate Software Developer Intern at Google in Summer 2025.</p>
-            <p>Accomplishments:</p>
-            <ul class="achievements-list">
-                <li>Designed and implemented a user-facing feature for the Android Phone App's Calling Card for over 600 million daily active users and over 7 billion daily calls.</li>
-                <li>Engineered (end-to-end) a transformative feature used for Android's production code, working closely with UX designers and tech leads to iteratively develop a positive user experience.</li>
-                <li>Gained proficiency with multi-threaded applications, data services, and state management, as well as navigating internal tools and Google's 2 billion line codebase.</li>
-                <li>Created an internal API accessible across the Android Phone App's teams that will make it easier for applications to support accessibility for Android's ~800 million color blind and low-vision users.</li>
-            </ul>
-        </section>
-
-        <section id="luc" class="project-section">
-            <h1>Research Intern (LUC)</h1>
-            <img src="../big-src/luc.png" alt="Loyola Research">
-            <p>I was a research intern at Loyola University Chicago the summers after my sophomore and senior years of high school. Accomplishments:</p>
-            <ul class="achievements-list">
-                <li>I developed a Flask web application allowing researchers to evaluate and optimize the efficiency of their computer vision models on a cluster of low-powered devices, facilitating resource-constrained AI development for the eventual goal of running artificial intelligence on phones.</li>
-                <li>I contributed to a published research paper on the security risks of popular machine learning model hubs such as HuggingFace, bringing awareness to the risks of open-source artificial intelligence.</li>
-                <li>I evaluated and presented a comparative analysis of leading Python charting libraries, assessing ease of use and visual appeal to guide optimal tool selection for scientific data visualization, which led to changes in the lab's charting methods for their research papers.</li>
-            </ul>
-        </section>
-
-        <section id="chrome" class="project-section">
-            <h1>Chrome Support Intern</h1>
-            <img src="../big-src/eths.png" alt="Chrome">
-            <p>I was an intern at my high school's Chromebook help desk from 2021 to 2024.</p>
-            <p>Responsibilities:</p>
-            <ul class="achievements-list">
-                <li>Delivered front line customer support within the school's central help desk to support students and staff with their Chromebook computers.</li>
-                <li>Checked in/out loaners and customer devices coming in/out of repair.</li>
-                <li>Diagnosed and performed troubleshooting on out-of-warranty Chromebooks.</li>
-                <li>Performed technical repairs through software updates and replacement of major parts including batteries, screens, keyboards, motherboards, and other modular components.</li>
-            </ul>
-        </section>
-
+    <div class="container" id="content-container">
+        <!-- Content dynamically rendered from gallery.json -->
     </div>
+
+    <script>
+    const SECTION_ID = "Work";
+
+    fetch('../gallery.json')
+      .then(response => response.json())
+      .then(data => {
+        const sectionData = data.find(sec => sec.id === SECTION_ID);
+        if (!sectionData) return;
+
+        const container = document.getElementById('content-container');
+
+        sectionData.items.forEach(item => {
+          const sectionEl = document.createElement('section');
+          sectionEl.id = item.id;
+          sectionEl.className = 'project-section';
+
+          let htmlContent = `<h1>${item.title}</h1>`;
+
+          if (item.tags) {
+            htmlContent += `<b>${item.tags}</b>`;
+          }
+
+          if (item.mediaType === 'video' && item.mediaSrc) {
+            htmlContent += `
+              <div class="iframe-wrapper">
+                <video width="75%" height="auto" controls>
+                  <source src="${item.mediaSrc}" type="video/mp4">
+                </video>
+              </div>`;
+          } else if (item.iframeSrc) {
+            htmlContent += `
+              <div class="iframe-wrapper">
+                <iframe src="${item.iframeSrc}" width="500" height="500" style="border: 1px solid #ccc" frameborder="0"></iframe>
+              </div>`;
+          } else if (item.bigSrc) {
+            htmlContent += `<img src="${item.bigSrc}" alt="${item.title}">`;
+          }
+
+          if (item.paragraphs) {
+            item.paragraphs.forEach(p => {
+              htmlContent += `<p>${p}</p>`;
+            });
+          }
+
+          if (item.achievements && item.achievements.length > 0) {
+            htmlContent += `<ul class="achievements-list">`;
+            item.achievements.forEach(ach => {
+              htmlContent += `<li>${ach}</li>`;
+            });
+            htmlContent += `</ul>`;
+          }
+
+          sectionEl.innerHTML = htmlContent;
+          container.appendChild(sectionEl);
+        });
+      })
+      .catch(err => console.error("Error loading gallery data:", err));
+    </script>
 
 </body>
 </html>

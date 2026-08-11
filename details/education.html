@@ -19,32 +19,68 @@
 
     <a href="../index.html" class="back-btn">← Back to Gallery</a>
 
-    <div class="container">
-
-        <section id="uiuc" class="project-section">
-            <h1>University of Illinois Urbana-Champaign (UIUC)</h1>
-            <img src="../big-src/siebel.png" alt="UIUC Siebel Center">
-            <p>I'm currently a Computer Science major at UIUC.</p>
-            <p>I'm honored to be a James Scholar, Matthews Scholar, and National Merit Scholar.</p>
-            <ul class="achievements-list">
-                <li>Expected graduation: Spring 2028 | Cumulative GPA: 3.93</li>
-                <li>Relevant coursework: Calculus, intro to CS I & II, Statistics for CS, Linear Algebra with Computational Applications, and Data Structures.</li>
-                <li>Extracurriculars: Professional Chair of Alpha Omega Epsilon (STEM sorority) and Grainger Career Scholar.</li>
-            </ul>
-        </section>
-
-        <section id="eths" class="project-section">
-            <h1>Evanston Township High School</h1>
-            <img src="../big-src/eths.png" alt="ETHS Logo">
-            <p>I attended Evanston Township High School from 2020 to 2024.</p>
-            <p>Unweighted GPA: 4.0 | SAT: 1590</p>
-            <ul class="achievements-list">
-                <li>Leadership: President of Girls Who Code, President of the Animal Welfare Club, Captain of the Quizbowl team, and Co-chair for a leadership-through-service program.</li>
-                <li>Involvement: Intern at the school computer center, and active member of the coding club, community service club, math team, and library advisory board.</li>
-            </ul>
-        </section>
-
+    <div class="container" id="content-container">
+        <!-- Content dynamically rendered from gallery.json -->
     </div>
+
+    <script>
+    const SECTION_ID = "Education";
+
+    fetch('../gallery.json')
+      .then(response => response.json())
+      .then(data => {
+        const sectionData = data.find(sec => sec.id === SECTION_ID);
+        if (!sectionData) return;
+
+        const container = document.getElementById('content-container');
+
+        sectionData.items.forEach(item => {
+          const sectionEl = document.createElement('section');
+          sectionEl.id = item.id;
+          sectionEl.className = 'project-section';
+
+          let htmlContent = `<h1>${item.title}</h1>`;
+
+          if (item.tags) {
+            htmlContent += `<b>${item.tags}</b>`;
+          }
+
+          if (item.mediaType === 'video' && item.mediaSrc) {
+            htmlContent += `
+              <div class="iframe-wrapper">
+                <video width="75%" height="auto" controls>
+                  <source src="${item.mediaSrc}" type="video/mp4">
+                </video>
+              </div>`;
+          } else if (item.iframeSrc) {
+            htmlContent += `
+              <div class="iframe-wrapper">
+                <iframe src="${item.iframeSrc}" width="500" height="500" style="border: 1px solid #ccc" frameborder="0"></iframe>
+              </div>`;
+          } else if (item.bigSrc) {
+            htmlContent += `<img src="${item.bigSrc}" alt="${item.title}">`;
+          }
+
+          if (item.paragraphs) {
+            item.paragraphs.forEach(p => {
+              htmlContent += `<p>${p}</p>`;
+            });
+          }
+
+          if (item.achievements && item.achievements.length > 0) {
+            htmlContent += `<ul class="achievements-list">`;
+            item.achievements.forEach(ach => {
+              htmlContent += `<li>${ach}</li>`;
+            });
+            htmlContent += `</ul>`;
+          }
+
+          sectionEl.innerHTML = htmlContent;
+          container.appendChild(sectionEl);
+        });
+      })
+      .catch(err => console.error("Error loading gallery data:", err));
+    </script>
 
 </body>
 </html>

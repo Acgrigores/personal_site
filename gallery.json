@@ -4,11 +4,13 @@
     "title": "About Me",
     "ropeColor": "#1B3B2B",
     "items": [
-      { 
-        "src": "./src/anna.png", 
-        "title": "Welcome!", 
+      {
+        "id": "welcome",
+        "src": "./src/anna.png",
+        "bigSrc": "../big-src/anna.png",
+        "title": "Welcome!",
         "details": "I'm Anna Grigorescu, a computer science student at UIUC. This gallery (which draws inspiration from my art history minor) is an overview of my experience and projects.",
-        "link": "../index.html" 
+        "link": "../index.html"
       }
     ]
   },
@@ -17,29 +19,75 @@
     "title": "Work Experience",
     "ropeColor": "#8CA399",
     "items": [
-        { 
-        "src": "./src/google.png", 
-        "title": "Google SWE Intern", 
+      {
+        "id": "google-swe",
+        "src": "./src/google.png",
+        "bigSrc": "../big-src/google.png",
+        "title": "Google SWE Intern",
         "details": "Summer 2026. Kotlin, Android, Jetpack Compose, Linux, Version Control, AI. Still completing!",
-        "link": "work.html#google"
+        "link": "work.html#google-swe",
+        "paragraphs": [
+          "I was an Software Engineering Intern at Google in Summer 2026.",
+          "Accomplishments:"
+        ],
+        "achievements": [
+          "Architected, implemented, and drove the launch of a significant design change to the Android Auto interface that will optimize layouts and provide core action controls. Currently in Alpha, and is in the process of ramping to over 100 million active users.",
+          "Authored a comprehensive technical design document outlining architecture, automated testing strategies, and API integration, securing alignment and approval from senior engineers across the organization.",
+          "Made 22 changes to production code within the first 2 months of the internship to add features, fix bugs, and reduce technical debt, significantly outpacing the initial project timeline.",
+          "Architected and tested new files to create Android Auto easter eggs in Kotlin using agentic workflows, for a team hackathon."
+        ]
       },
-      { 
-        "src": "./src/google.png", 
-        "title": "Google ASDI Intern", 
+      {
+        "id": "google",
+        "src": "./src/google.png",
+        "bigSrc": "../big-src/google.png",
+        "title": "Google ASDI Intern",
         "details": "Summer 2025. Kotlin, Linux, Android, Jetpack Compose.",
-        "link": "work.html#google"
+        "link": "work.html#google",
+        "paragraphs": [
+          "I was an Associate Software Developer Intern at Google in Summer 2025.",
+          "Accomplishments:"
+        ],
+        "achievements": [
+          "Designed and implemented a user-facing feature for the Android Phone App's Calling Card for over 600 million daily active users and over 7 billion daily calls.",
+          "Engineered (end-to-end) a transformative feature used for Android's production code, working closely with UX designers and tech leads to iteratively develop a positive user experience.",
+          "Gained proficiency with multi-threaded applications, data services, and state management, as well as navigating internal tools and Google's 2 billion line codebase.",
+          "Created an internal API accessible across the Android Phone App's teams that will make it easier for applications to support accessibility for Android's ~800 million color blind and low-vision users."
+        ]
       },
-      { 
-        "src": "./src/luc.png", 
-        "title": "Loyola University Research Intern", 
-        "details": "Summers 2022 and 2024. Python, Linux, Flask, HTML/CSS/JS, Pandas, Git", 
-        "link": "work.html#luc"
+      {
+        "id": "luc",
+        "src": "./src/luc.png",
+        "bigSrc": "../big-src/luc.png",
+        "title": "Research Intern (LUC)",
+        "details": "Summers 2022 and 2024. Python, Linux, Flask, HTML/CSS/JS, Pandas, Git",
+        "link": "work.html#luc",
+        "paragraphs": [
+          "I was a research intern at Loyola University Chicago the summers after my sophomore and senior years of high school. Accomplishments:"
+        ],
+        "achievements": [
+          "I developed a Flask web application allowing researchers to evaluate and optimize the efficiency of their computer vision models on a cluster of low-powered devices, facilitating resource-constrained AI development for the eventual goal of running artificial intelligence on phones.",
+          "I contributed to a published research paper on the security risks of popular machine learning model hubs such as HuggingFace, bringing awareness to the risks of open-source artificial intelligence.",
+          "I evaluated and presented a comparative analysis of leading Python charting libraries, assessing ease of use and visual appeal to guide optimal tool selection for scientific data visualization, which led to changes in the lab's charting methods for their research papers."
+        ]
       },
-      { 
-        "src": "./src/eths.png", 
-        "title": "Chrome Support Intern", 
-        "details": "2021-2024. Chromebook repair, customer service.", 
-        "link": "work.html#chrome"
+      {
+        "id": "chrome",
+        "src": "./src/eths.png",
+        "bigSrc": "../big-src/eths.png",
+        "title": "Chrome Support Intern",
+        "details": "2021-2024. Chromebook repair, customer service.",
+        "link": "work.html#chrome",
+        "paragraphs": [
+          "I was an intern at my high school's Chromebook help desk from 2021 to 2024.",
+          "Responsibilities:"
+        ],
+        "achievements": [
+          "Delivered front line customer support within the school's central help desk to support students and staff with their Chromebook computers.",
+          "Checked in/out loaners and customer devices coming in/out of repair.",
+          "Diagnosed and performed troubleshooting on out-of-warranty Chromebooks.",
+          "Performed technical repairs through software updates and replacement of major parts including batteries, screens, keyboards, motherboards, and other modular components."
+        ]
       }
     ]
   },
@@ -48,17 +96,38 @@
     "title": "Education",
     "ropeColor": "#1B3B2B",
     "items": [
-      { 
-        "src": "./src/siebel.png", 
-        "title": "University of Illinois Urbana-Champaign", 
-        "details": "Expected Graduation May 2028. 3.93 GPA. Relevant courses: Computer Architecture, Data Structures, Statistics, Linear Algebra, Calculus.", 
-        "link": "education.html#uiuc"
+      {
+        "id": "uiuc",
+        "src": "./src/siebel.png",
+        "bigSrc": "../big-src/siebel.png",
+        "title": "University of Illinois Urbana-Champaign (UIUC)",
+        "details": "Expected Graduation May 2028. 3.93 GPA. Relevant courses: Computer Architecture, Data Structures, Statistics, Linear Algebra, Calculus.",
+        "link": "education.html#uiuc",
+        "paragraphs": [
+          "I'm currently a Computer Science major at UIUC.",
+          "I'm honored to be a James Scholar, Matthews Scholar, and National Merit Scholar."
+        ],
+        "achievements": [
+          "Expected graduation: Spring 2028 | Cumulative GPA: 3.93",
+          "Relevant coursework: Calculus, intro to CS I & II, Statistics for CS, Linear Algebra with Computational Applications, and Data Structures.",
+          "Extracurriculars: Professional Chair of Alpha Omega Epsilon (STEM sorority) and Grainger Career Scholar."
+        ]
       },
-      { 
-        "src": "./src/eths.png", 
-        "title": "Evanston Township High School", 
-        "details": "4.0 GPA. Relevant classes: Computer Science, Cybersecurity, Robotics, Calculus.", 
-        "link": "education.html#eths"
+      {
+        "id": "eths",
+        "src": "./src/eths.png",
+        "bigSrc": "../big-src/eths.png",
+        "title": "Evanston Township High School",
+        "details": "4.0 GPA. Relevant classes: Computer Science, Cybersecurity, Robotics, Calculus.",
+        "link": "education.html#eths",
+        "paragraphs": [
+          "I attended Evanston Township High School from 2020 to 2024.",
+          "Unweighted GPA: 4.0 | SAT: 1590"
+        ],
+        "achievements": [
+          "Leadership: President of Girls Who Code, President of the Animal Welfare Club, Captain of the Quizbowl team, and Co-chair for a leadership-through-service program.",
+          "Involvement: Intern at the school computer center, and active member of the coding club, community service club, math team, and library advisory board."
+        ]
       }
     ]
   },
@@ -67,65 +136,194 @@
     "title": "Projects",
     "ropeColor": "#E5C07B",
     "items": [
-      { 
-        "src": "./src/cc.png", 
-        "title": "Google Calling Card", 
-        "details": "Intern Project. Kotlin, Jetpack Compose, Design Docs, Data Services, State Management.", 
-        "link": "projects.html#google"
+      {
+        "id": "subwaysurfers",
+        "src": "./src/subwaysurfers.gif",
+        "bigSrc": "../big-src/subwaysurfers.mp4",
+        "title": "IRL Subway Surfers",
+        "tags": "JavaScript, HTML, CSS, MediaPipe, Canvas 2D API, WebRTC",
+        "details": "Weekend project: Subway Surfers controlled by user movements.",
+        "link": "projects.html#subwaysurfers",
+        "mediaType": "video",
+        "mediaSrc": "../big-src/subwaysurfers.mp4",
+        "paragraphs": [
+          "A weekend project for fun that turns Subway Surfers into a workout! The users' jumps, squats, and weaves control their character as they dodge obstacles."
+        ],
+        "achievements": [
+          "Designed and implemented the user interface.",
+          "Worked with HTML/CSS/JS, MediaPipe, Canvas 2D API, and WebRTC."
+        ]
       },
-      { 
-        "src": "./src/photostrip.png", 
-        "title": "pAInt me a picture photobooth", 
-        "details": "Project for UIUC's annual engineering fair on behalf of Alpha Omega Epsilon. Python, Streamlit, Vertex API.", 
-        "link": "projects.html#photobooth"
+      {
+        "id": "google",
+        "src": "./src/cc.png",
+        "bigSrc": "../big-src/cc.png",
+        "title": "Android Calling Card",
+        "tags": "Kotlin, Jetpack Compose, Design Docs, Data Services, State Management",
+        "details": "Intern Project. Kotlin, Jetpack Compose, Design Docs, Data Services, State Management.",
+        "link": "projects.html#google",
+        "paragraphs": [
+          "As part of my software engineering internship at Google, I end-to-end engineered a feature for Android's Calling Card."
+        ],
+        "achievements": [
+          "Designed and implemented an internal Material Color Utilities API that allows developers to find contrasting text on top of images, making it easier to support accessibility goals for ~800 million colorblind and low-vision users.",
+          "Used the utilities API to build contrasting \"smart colors\" that dynamically match the hue of user images for the Android Calling Card—a feature used by 600 million daily active users and 7 billion daily calls.",
+          "Collaborated end-to-end with UX designers and tech leads to navigate Google's multi-billion-line codebase, writing production-level code with a focus on multi-threading, state management, and data services."
+        ]
       },
-      { 
-        "src": "./src/louvre.png", 
-        "title": "Louvre CTF Challenge", 
-        "details": "Group project for a course. Python, Flask, Linux, Git.", 
-        "link": "projects.html#ctf"
+      {
+        "id": "photobooth",
+        "src": "./src/photostrip.png",
+        "bigSrc": "../big-src/photostrip.png",
+        "title": "AI Photobooth",
+        "tags": "Python, Streamlit, Vertex API",
+        "details": "Project for UIUC's annual engineering fair on behalf of Alpha Omega Epsilon. Python, Streamlit, Vertex API.",
+        "link": "projects.html#photobooth",
+        "paragraphs": [
+          "For UIUC's Engineering Open House, I created an AI photobooth to get kids excited about computers and show them that technology and creativity can go hand in hand."
+        ],
+        "achievements": [
+          "Captured photos of visitors, analyzed their facial expressions/emotions, and dynamically generated themed backgrounds using generative AI models.",
+          "Attracted over 300 visitors over two days, serving as an interactive demo to teach guests about the limitations and opportunities of generative media.",
+          "Built a background automated pipeline to save, stitch, and email the photo strips to visitors as a personalized keepsake from the fair."
+        ]
       },
-      { 
-        "src": "./src/vxv.png", 
-        "title": "HSHacks Winning Submission", 
-        "details": "Hackathon project. HTML, CSS, JS, Google Apps Script.", 
-        "link": "projects.html#hshacks"
+      {
+        "id": "ctf",
+        "src": "./src/louvre.png",
+        "title": "Louvre Capture The Flag",
+        "tags": "Python, Flask, Linux, Git",
+        "details": "Group project for a course. Python, Flask, Linux, Git.",
+        "link": "projects.html#ctf",
+        "mediaType": "video",
+        "mediaSrc": "../big-src/louvre-video.mp4",
+        "paragraphs": [
+          "This is a 9-challenge CTF quest where users learn about cybersecurity domains by playing a game where they attempt to pen-test the Louvre."
+        ],
+        "achievements": [
+          "Led the team development, structured the overall application roadmap, and authored the technical setup and testing frameworks.",
+          "Programmed 7 of the 9 core cybersecurity challenges along with the interactive site map, landing page, UI styles, and input validation layers.",
+          "Collaborated on pull requests, performed code reviews, and integrated feedback to maintain a clean codebase in Git."
+        ]
       },
-      { 
-        "src": "./src/beans.png", 
-        "title": "Castor Bean Counter", 
-        "details": "Project in collaboration with a nonprofit. Python, various LLM APIs, Google Sheets scripts", 
-        "link": "projects.html#beans"
+      {
+        "id": "hshacks",
+        "src": "./src/vxv.png",
+        "bigSrc": "../big-src/vxv.png",
+        "title": "Veterans x Volunteers Hackathon Submission",
+        "tags": "HTML, CSS, JS, Google Apps Script",
+        "details": "Hackathon project. HTML, CSS, JS, Google Apps Script.",
+        "link": "projects.html#hshacks",
+        "paragraphs": [
+          "This project was made in a team of 3 during a 12-hour hackathon, where we won First Place overall out of more than 120 participants."
+        ],
+        "achievements": [
+          "Developed a platform for a veteran-support nonprofit that allows organizers to post mental health events and lets veterans and volunteers register.",
+          "Integrated Google Apps Script to dynamically compile registration metrics into spreadsheets and generate dashboard tools for instant mass email updates."
+        ]
       },
-      { 
-        "src": "./src/asgard.png", 
-        "title": "Asgard", 
-        "details": "Project for my Loyola Chicago research internship. Python, Flask, HTML, CSS, JS.", 
-        "link": "projects.html#asgard"
+      {
+        "id": "beans",
+        "src": "./src/beans.png",
+        "bigSrc": "../big-src/beans.png",
+        "title": "Crop Counter for Brazilian Nonprofit",
+        "tags": "Python, various LLM APIs, Google Sheets scripts",
+        "details": "Project in collaboration with a nonprofit. Python, various LLM APIs, Google Sheets scripts",
+        "link": "projects.html#beans",
+        "paragraphs": [
+          "As a UIUC Grainger Career Scholar, I worked in a group of four to research the viability of using AI to count crops in partnership with Toca, a Brazilian nonprofit supporting family farmers."
+        ],
+        "achievements": [
+          "Researched computer vision tools to help family farmers calculate crop volumes independently, eliminating their reliance on third-party pricing metrics.",
+          "Evaluated models to handle the irregular shapes of natural castor beans, addressing recognition challenges by incorporating volume-to-area density estimations.",
+          "Created a tracking utility that lets organizers input physical batch weights to cross-validate and audit the accuracy of our statistical models."
+        ]
       },
-      { 
-        "src": "./src/124.png", 
-        "title": "CS 124 Project", 
-        "details": "Project for my intro CS course. Kotlin, Android Studio.", 
-        "link": "projects.html#124"
+      {
+        "id": "asgard",
+        "src": "./src/asgard.png",
+        "bigSrc": "../big-src/asgard.png",
+        "title": "Asgard",
+        "tags": "Python, Flask, HTML, CSS, JS",
+        "details": "Project for my Loyola Chicago research internship. Python, Flask, HTML, CSS, JS.",
+        "link": "projects.html#asgard",
+        "paragraphs": [
+          "This project was built during my research internship at Loyola University Chicago's Software and Systems Laboratory."
+        ],
+        "achievements": [
+          "Designed the user interface and frontend system to let researchers upload and test computer vision models on physical hardware clusters.",
+          "Assisted with cluster hardware configurations to measure performance metrics on low-powered devices, optimizing models for mobile environments."
+        ]
       },
-      { 
-        "src": "./src/128.png", 
-        "title": "CS 128 Projects", 
-        "details": "Projects for my intro CS  course. C++.", 
-        "link": "projects.html#128"
+      {
+        "id": "124",
+        "src": "./src/124.png",
+        "bigSrc": "../big-src/124.png",
+        "title": "CS 124 Project",
+        "tags": "Android Studio, Kotlin, Git",
+        "details": "Project for my intro CS course. Kotlin, Android Studio.",
+        "link": "projects.html#124",
+        "paragraphs": [
+          "Built as an assignment for my introductory computer science course to display student clubs and organizations at UIUC."
+        ],
+        "achievements": [
+          "Implemented client-side search functionality and dynamically sorted club structures based on user queries.",
+          "Created a localized bookmarking system to let users star, store, and filter their favorite campus activities."
+        ]
       },
-      { 
-        "src": "./src/maze.gif", 
-        "title": "CS 225 Projects", 
-        "details": "Projects for my data structures course. C++.", 
-        "link": "projects.html#225"
+      {
+        "id": "128",
+        "src": "./src/128.png",
+        "bigSrc": "../big-src/128.png",
+        "title": "CS 128 Projects",
+        "tags": "C++",
+        "details": "Projects for my intro CS course. C++.",
+        "link": "projects.html#128",
+        "paragraphs": [
+          "Completed a series of core systems programming projects to master pointers, dynamic memory, and algorithm optimization."
+        ],
+        "achievements": [
+          "Engineered an elementary database manager supporting operations to dynamically build, modify, print, and delete tables, rows, and columns.",
+          "Coded a DNA analysis system using linked lists to scan genetic records and identify matches.",
+          "Implemented an image-resizing system using the seam carving technique, writing an optimized pathfinding algorithm on dynamic 2D arrays to recalculate pixel paths with minimal distortion."
+        ]
       },
-      { 
-        "src": "./src/evolution.gif", 
-        "title": "AI Projects", 
-        "details": "Solo projects for fun. Python.", 
-        "link": "projects.html#ai"
+      {
+        "id": "225",
+        "src": "./src/maze.gif",
+        "bigSrc": "../big-src/maze.gif",
+        "title": "CS 225 Projects",
+        "tags": "C++",
+        "details": "Projects for my data structures course. C++.",
+        "link": "projects.html#225",
+        "paragraphs": [
+          "Completed various projects for my data structures course to focus on memory management, performance, and graph theory."
+        ],
+        "achievements": [
+          "Built a sticker utility using HSL color mapping and custom memory allocations to practice safe pointer manipulation.",
+          "Wrote a generic Template List class to build, traverse, reverse, and filter linked memory models using standard C++ iterators.",
+          "Created a mosaic image builder that parses tile assets using k-d trees and an optimized nearest-neighbor search (NNS) algorithm.",
+          "Programmed a canvas flood-fill algorithm to traverse, paint, and transition image buffers dynamically.",
+          "Designed a randomized maze generator and solver utilizing the disjoint sets data structure to prevent cycles.",
+          "Coded a tile puzzle solver using graph algorithms to evaluate states too large to store in local memory."
+        ]
+      },
+      {
+        "id": "ai",
+        "src": "./src/evolution.gif",
+        "bigSrc": "../big-src/evolution.gif",
+        "title": "AI Projects",
+        "tags": "Python",
+        "details": "Solo projects for fun. Python.",
+        "link": "projects.html#ai",
+        "paragraphs": [
+          "Developed a collection of self-directed projects to experiment with machine learning fundamentals outside of coursework."
+        ],
+        "achievements": [
+          "Created an evolutionary pixel-art generator to study visual distance metrics and coordinate generation speeds.",
+          "Wrote a mock speech generator using Markov chains trained on music catalogs, experimenting with dataset poisoning techniques.",
+          "Built custom local implementations of stochastic gradient descent (SGD) and Adagrad from scratch to study optimization models."
+        ]
       }
     ]
   },
@@ -134,53 +332,100 @@
     "title": "Awards",
     "ropeColor": "#1B3B2B",
     "items": [
-      { 
-        "src": "./src/nmsc.png", 
-        "title": "National Merit Scholar", 
-        "details": "Awarded to ~0.5% of high school seniors each year", 
-        "link": "awards.html#nmsc"
+      {
+        "id": "nmsc",
+        "src": "./src/nmsc.png",
+        "bigSrc": "../big-src/nmsc.png",
+        "title": "National Merit Scholar",
+        "details": "Awarded to ~0.5% of high school seniors each year",
+        "link": "awards.html#nmsc",
+        "paragraphs": [
+          "To win the award, a student must go through several stages which include qualification, performance and submitting accomplishments. First, a student must qualify by scoring in the top 1% of test takers in their state. Based on these scores, approximately 16,000 students are selected nationally as semifinalists. To advance, they must submit a list of accomplishments, including a high school transcript, a personal essay and a letter of recommendation. Finally, 7,600 students nationwide are chosen as National Merit award winners. Winners receive a $2,500 scholarship along with academic recognition."
+        ]
       },
-      { 
-        "src": "./src/grainger.png", 
-        "title": "James Scholar", 
-        "details": "Selected for the Honors Program within UIUC's Grainger College of Engineering.", 
-        "link": "awards.html#james"
+      {
+        "id": "james",
+        "src": "./src/grainger.png",
+        "bigSrc": "../big-src/grainger.png",
+        "title": "James Scholar",
+        "details": "Selected for the Honors Program within UIUC's Grainger College of Engineering.",
+        "link": "awards.html#james",
+        "paragraphs": [
+          "\"The gifted undergraduate student who is seeking the challenge of advanced and unusual academic opportunities and the maximum freedom in course selection will find such opportunity in the James Scholar Program in Engineering. In addition to the various honors sections, courses, and special educational opportunities made available by the various departments of the college, the program administers several engineering honors courses. These courses are designed to bring together James Scholars from throughout the college to study various interdisciplinary subjects.",
+          "The James Scholar Program is voluntary and therefore enrolls superior students who are actively seeking unusual academic challenges. It strives to interact with each student on an individual basis; its foundation lies in the student's interest and academic goals.\" - Siebel School of Computing and Data Science Website"
+        ]
       },
-      { 
-        "src": "./src/NCSF.png", 
-        "title": "National Cyber Scholar with Honors", 
-        "details": "National award for cybersecurity talent.", 
-        "link": "awards.html#cyberscholar"
+      {
+        "id": "cyberscholar",
+        "src": "./src/NCSF.png",
+        "bigSrc": "../big-src/NCSF.png",
+        "title": "National Cyber Scholar With Honors",
+        "details": "National award for cybersecurity talent.",
+        "link": "awards.html#cyberscholar",
+        "paragraphs": [
+          "\"Due to their hard work, dedication and progress this year, the students... have earned the National Cyber Scholarship Foundation (NCSF) Scholar with Honors status for 2023. This means they have qualified as a National Cyber Scholar based on their performance in the CyberStart gamified learning platform, and gone on to complete the 2023 Cyber Foundations Academy, completing the SANS Foundations course and earning the industry-recognized GIAC Foundational Cybersecurity Technologies (GFACT) certification.",
+          "These students have shown true excellence in their cybersecurity learning journey. Cybersecurity is a fascinating and challenging field, but not everyone has the tenacity and analytical capacity to be exceptional. They have demonstrated they have what it takes, and that with continued study they could have a place in this industry. All of our Scholars with Honors should be incredibly proud of their achievement.\" - NCSF Website"
+        ]
       },
-      { 
-        "src": "./src/vxv.png", 
-        "title": "HsHacks Winner", 
-        "details": "Won a hackathon.", 
-        "link": "awards.html#hshacks"
+      {
+        "id": "hshacks",
+        "src": "./src/vxv.png",
+        "bigSrc": "../big-src/vxv.png",
+        "title": "HsHacks Winner",
+        "details": "Won a hackathon.",
+        "link": "awards.html#hshacks",
+        "paragraphs": [
+          "\"HSHacks is a 12-hour, in-person hackathon\" - HSHacks"
+        ],
+        "achievements": [
+          "Won Best Overall out of 120+ participants."
+        ]
       },
-      { 
-        "src": "./src/iss.png", 
-        "title": "Illinois State Scholar", 
-        "details": "Selected as an Illinois State Scholar.", 
-        "link": "awards.html#iss"
+      {
+        "id": "iss",
+        "src": "./src/iss.png",
+        "bigSrc": "../big-src/iss.png",
+        "title": "Illinois State Scholar",
+        "details": "Selected as an Illinois State Scholar.",
+        "link": "awards.html#iss",
+        "paragraphs": [
+          "\"The State Scholar Program publicly and personally identifies graduating high school seniors who possess superior academic potential. Students from nearly every high school in Illinois compete in the program... The Illinois State Scholar program is awarded to high school seniors based on ACT or SAT test scores and the sixth semester class size and unweighted class rank and Grade Point Average (GPA)\" - ISS Website"
+        ]
       },
-      { 
-        "src": "./src/grainger.png", 
-        "title": "Matthews Scholar", 
-        "details": "A UIUC award and scholarship awarded to incoming students.", 
-        "link": "awards.html#ms"
+      {
+        "id": "ms",
+        "src": "./src/grainger.png",
+        "bigSrc": "../big-src/grainger.png",
+        "title": "Matthews Scholar",
+        "details": "A UIUC award and scholarship awarded to incoming students.",
+        "link": "awards.html#ms",
+        "paragraphs": [
+          "\"Incoming freshmen are selected for consideration for the Matthews Scholars program based upon their having demonstrated academic excellence and leadership skills as well as involvement in extracurricular and community service activities.\" - UIUC website"
+        ]
       },
-      { 
-        "src": "./src/desmos.png", 
-        "title": "Desmos Global Graphing Art Contest Finalist", 
-        "details": "Selected out of 10,000 entries for my blending of math and art.", 
-        "link": "awards.html#desmos"
+      {
+        "id": "desmos",
+        "src": "./src/desmos.png",
+        "title": "Desmos Global Graphing Art Contest Finalist",
+        "details": "Selected out of 10,000 entries for my blending of math and art.",
+        "link": "awards.html#desmos",
+        "iframeSrc": "https://www.desmos.com/calculator/czzgqexnjw?embed",
+        "achievements": [
+          "Selected as a finalist from over 10,000 graphs for Desmos' Graphing Art Competition.",
+          "Blended math and programming concepts with art to create an interactive, gamified graph from over 1,000 equations."
+        ]
       },
-      { 
-        "src": "./src/naqt.png", 
-        "title": "Social Science and Art History Knowledge", 
-        "details": "Ranked top 20 in the country for social science and visual art by National Academic Quiz Tournaments.", 
-        "link": "awards.html#naqt"
+      {
+        "id": "naqt",
+        "src": "./src/naqt.png",
+        "bigSrc": "../big-src/naqt.png",
+        "title": "Social Sciences and Art History Knowledge",
+        "details": "Ranked top 20 in the country for social science and visual art by National Academic Quiz Tournaments.",
+        "link": "awards.html#naqt",
+        "achievements": [
+          "Ranked top 20 nationally for social sciences and visual art knowledge.",
+          "Captained a quizbowl team, leading them from the bottom of the region to 33rd place nationally."
+        ]
       }
     ]
   },
@@ -189,23 +434,26 @@
     "title": "Info",
     "ropeColor": "#8CA399",
     "items": [
-      { 
+      {
+        "id": "email",
         "src": "./src/email.png",
-        "title": "Email", 
-        "details": "Feel free to reach out for opportunities or collaborations at annacg4@illinois.edu", 
-        "link": "mailto:annacg4@illinois.edu" 
+        "title": "Email",
+        "details": "Feel free to reach out for opportunities or collaborations at annacg4@illinois.edu",
+        "link": "mailto:annacg4@illinois.edu"
       },
-      { 
+      {
+        "id": "linkedin",
         "src": "./src/linkedin.png",
-        "title": "LinkedIn", 
-        "details": "Connect with me on LinkedIn!", 
-        "link": "https://www.linkedin.com/in/anna-grigorescu" 
+        "title": "LinkedIn",
+        "details": "Connect with me on LinkedIn!",
+        "link": "https://www.linkedin.com/in/anna-grigorescu"
       },
-      { 
+      {
+        "id": "resume",
         "src": "./src/resume.png",
-        "title": "Resume", 
-        "details": "View my Resume!", 
-        "link": "resume.pdf" 
+        "title": "Resume",
+        "details": "View my Resume!",
+        "link": "resume.pdf"
       }
     ]
   }
