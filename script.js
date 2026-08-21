@@ -24,6 +24,15 @@ async function initGallery() {
     }
 }
 
+// If the item doesn't have a local src or is an external link preview:
+function getItemImage(item) {
+  if (item.src) {
+    return item.src;
+  }
+  // Generates the OpenGraph image / link preview card automatically:
+  return `https://api.microlink.io?url=${encodeURIComponent(item.link)}&screenshot=true&meta=false&embed=screenshot.url`;
+}
+
 function buildGalleryDOM() {
     galleryData.forEach(section => {
         const link = document.createElement('a');

@@ -430,6 +430,83 @@
     ]
   },
   {
+    "id": "Media",
+    "title": "Media & Press",
+    "ropeColor": "#E5C07B",
+    "items": [
+      {
+        "id": "media-android-auto-1",
+        "src": "./src/pa.png",
+        "title": "Android Auto Dashboard Redesign Feature (PhoneArena)",
+        "details": "July 2026. Coverage on a Android Auto media card update made during my Google SWE internship.",
+        "link": "https://www.phonearena.com/news/android-autos-dashboard-could-be-getting-a-serious-glow-up_id181882"
+      },
+      {
+        "id": "media-android-auto-2",
+        "src": "./src/ap.png",
+        "title": "Android Auto Visual Upgrade Coverage (Android Police)",
+        "details": "July 2026. Android Auto media card coverage.",
+        "link": "https://www.androidpolice.com/android-auto-dashboard-media-player-redesign/"
+      },
+      {
+        "id": "media-android-auto-3",
+        "src": "./src/autoevolution.png",
+        "title": "Android Auto Media App Card Rollout (autoevolution)",
+        "details": "May 2026. Android Auto media card coverage.",
+        "link": "https://www.autoevolution.com/news/google-starts-rolling-out-an-unannounced-android-auto-feature-ahead-of-its-big-2026-update-270632.html"
+      },
+      {
+        "id": "media-calling-cards",
+        "src": "./src/t3.png",
+        "title": "Android Calling Cards Style Upgrade Feature (T3)",
+        "details": "August 2025. Feature breakdown of custom Calling Cards in Phone by Google, which I worked on during my ASDI internship.",
+        "link": "https://www.t3.com/tech/phones/your-android-phone-is-getting-a-style-upgrade-with-more-than-a-hint-of-iphone"
+      },
+      {
+        "id": "media-google-intern-1",
+        "src": "./src/instagram.png",
+        "title": "Google Students Intern Showcase (Instagram)",
+        "details": "August 2026. Video feature interviewing fellow Google software engineering interns at the Google Kirkland office.",
+        "link": "https://www.instagram.com/p/DbmvHrqgT8h/?img_index=1"
+      },
+      {
+        "id": "media-google-intern-2",
+        "src": "./src/instagram.png",
+        "title": "Google Students Summer Internship Snippet (Instagram)",
+        "details": "August 2025. Video spotlight covering personal and professional growth as a Google software development intern.",
+        "link": "https://www.instagram.com/p/DNTDpaPBJoO/?img_index=1"
+      },
+      {
+        "id": "media-migraine-tech",
+        "src": "./src/Medium.png",
+        "title": "Tech-Free Migraine Tech? (Medium)",
+        "details": "August 2026. Personal article on leveraging Apple Shortcuts and NFC tags to streamline health logging.",
+        "link": "https://medium.com/@acgrigores/tech-free-migraine-tech-f020fb58976f"
+      },
+      {
+        "id": "media-national-merit-patch",
+        "src": "./src/patch.png",
+        "title": "National Merit Cash Scholarship Award Feature (Patch)",
+        "details": "May 2024. News coverage highlighting National Merit Scholarship recipients.",
+        "link": "https://patch.com/illinois/evanston/2-eths-students-awarded-cash-scholarships-national-merit"
+      },
+      {
+        "id": "media-national-merit-roundtable",
+        "src": "./src/ert.png",
+        "title": "National Merit Finalists Announcement (Evanston RoundTable)",
+        "details": "March 2024. Press spotlight naming the 2024 National Merit Scholarship Program finalists at ETHS.",
+        "link": "https://evanstonroundtable.com/2024/03/11/six-eths-students-named-national-merit-finalists/"
+      },
+      {
+        "id": "media-teded-talk",
+        "src": "./src/teded.png",
+        "title": "Circus and Suffrage TED-Ed Student Talk (YouTube)",
+        "details": "TED-Ed Student presentation discussing the role of circus artists in the women's suffrage movement.",
+        "link": "https://www.youtube.com/watch?v=po6Q3kXfnPQ"
+      }
+    ]
+  },
+  {
     "id": "Contact",
     "title": "Info",
     "ropeColor": "#8CA399",
