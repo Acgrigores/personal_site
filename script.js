@@ -205,7 +205,6 @@ window.addEventListener('DOMContentLoaded', () => {
   const splashImg = splash ? splash.querySelector('img') : null;
 
   if (splashImg) {
-    // Force the GIF to restart from frame 0 by appending a timestamp
     const originalSrc = splashImg.src.split('?')[0];
     splashImg.src = `${originalSrc}?t=${Date.now()}`;
   }
@@ -221,65 +220,91 @@ window.addEventListener('DOMContentLoaded', () => {
   }
 });
 
+// Interactive Gallery Cat
 document.addEventListener("DOMContentLoaded", () => {
-  const gallery = document.querySelector(".gallery-container") || document.body;
+  const trackEl = document.getElementById("gallery-track") || document.body;
+
+  // Asset paths
+  const IMG_SITTING = "src/sittingcat.png";
+  const IMG_WALKING = "big-src/walkingcat.GIF";
+
+  // Preload walking GIF
+  const preloadGif = new Image();
+  preloadGif.src = IMG_WALKING;
 
   // Create cat element
   const cat = document.createElement("img");
-  cat.src = "./big-src/walkingcat.GIF";
+  cat.src = IMG_SITTING;
   cat.id = "gallery-cat";
-  cat.alt = "Walking Cat";
+  cat.alt = "Gallery Cat";
 
-  const galleryHeight = gallery.offsetHeight || 500;
-  const FLOOR_Y = galleryHeight - 100;
+  // Floor height placement
+  const FLOOR_OFFSET = 120; // Distance in px from bottom of track/viewport to the floor line
+  
+  // Starting position in total world/track pixels
+  let catWorldX = 300;
+  let isMoving = false;
 
-  // Set initial cat coordinates on the ground
-  let catX = 100;
-  const catY = FLOOR_Y;
+  // Append cat to the track container
+  trackEl.appendChild(cat);
 
-  cat.style.left = `${catX}px`;
-  cat.style.top = `${catY}px`;
+  function updateCatY() {
+    const trackHeight = trackEl.clientHeight || window.innerHeight;
+    const catY = trackHeight - FLOOR_OFFSET;
+    cat.style.top = `${catY}px`;
+  }
+  updateCatY();
+  window.addEventListener('resize', updateCatY);
 
-  gallery.appendChild(cat);
+  // Position initialized
+  cat.style.left = `${catWorldX}px`;
 
-  // Movement & delay variables
+  // Movement & state variables
   const MAX_SPEED = 1.2;
-  let targetX = catX;
+  let targetWorldX = catWorldX;
 
   let moveTimeout = null;
   let initialMouseSide = null;
-  let pendingTargetX = null;
+  let pendingTargetWorldX = null;
 
-  // Track mouse movement (horizontal direction only)
+  // Calculate cursor's true world X position across viewport & inner track scrolls
+  function getEventWorldX(e) {
+    const trackScroll = trackEl.scrollLeft || 0;
+    const windowScroll = window.pageXOffset || document.documentElement.scrollLeft || 0;
+    const trackRect = trackEl.getBoundingClientRect();
+    
+    // If track is an internal scrollable container:
+    if (trackEl !== document.body && trackEl.scrollWidth > trackEl.clientWidth) {
+      return e.clientX - trackRect.left + trackScroll;
+    }
+    // If window/document handles the scroll:
+    return e.clientX + windowScroll;
+  }
+
+  // Mouse move listener
   window.addEventListener("mousemove", (e) => {
-    // Get mouse position relative to gallery boundary
-    const galleryRect = gallery.getBoundingClientRect();
-    const currentMouseX = e.clientX - galleryRect.left;
-
-    // Check which side of the cat the mouse is currently on
-    const currentSide = currentMouseX < catX ? "left" : "right";
+    const currentWorldMouseX = getEventWorldX(e);
+    const currentSide = currentWorldMouseX < catWorldX ? "left" : "right";
 
     if (moveTimeout) {
-      // CANCEL MOVEMENT: If mouse crosses over the cat to the opposite side during delay
+      // If mouse crosses to the opposite side of the cat before 3s, abort
       if (currentSide !== initialMouseSide) {
         clearTimeout(moveTimeout);
         moveTimeout = null;
-        pendingTargetX = null;
+        pendingTargetWorldX = null;
         return;
       }
-      // If still on the same side, update target destination
-      pendingTargetX = currentMouseX;
+      pendingTargetWorldX = currentWorldMouseX;
     } else {
-      // START 3-SECOND DELAY
       initialMouseSide = currentSide;
-      pendingTargetX = currentMouseX;
+      pendingTargetWorldX = currentWorldMouseX;
 
       moveTimeout = setTimeout(() => {
-        if (pendingTargetX !== null) {
-          targetX = pendingTargetX;
+        if (pendingTargetWorldX !== null) {
+          targetWorldX = pendingTargetWorldX;
 
-          // Orient sprite toward target direction
-          if (targetX < catX) {
+          // Face target direction
+          if (targetWorldX < catWorldX) {
             cat.classList.add("facing-left");
             cat.classList.remove("facing-right");
           } else {
@@ -288,22 +313,28 @@ document.addEventListener("DOMContentLoaded", () => {
           }
         }
         moveTimeout = null;
-      }, 3000); // 3 seconds
+      }, 3000); // 3-second delay
     }
   });
 
-  // Smooth Horizontal Animation Loop
+  // Animation Loop (Moves in World Coordinates)
   function animateCat() {
-    const dx = targetX - catX;
+    const dx = targetWorldX - catWorldX;
 
-    // Move along X-axis only if distance exists
-    if (Math.abs(dx) > 1) {
-      // Step constrained by slow max speed
+    if (Math.abs(dx) > 1.5) {
+      if (!isMoving) {
+        isMoving = true;
+        cat.src = IMG_WALKING;
+      }
+
       const moveStep = Math.sign(dx) * Math.min(Math.abs(dx), MAX_SPEED);
-      catX += moveStep;
-
-      // Update position in gallery coordinates
-      cat.style.left = `${catX}px`;
+      catWorldX += moveStep;
+      cat.style.left = `${catWorldX}px`;
+    } else {
+      if (isMoving) {
+        isMoving = false;
+        cat.src = IMG_SITTING;
+      }
     }
 
     requestAnimationFrame(animateCat);

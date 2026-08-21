@@ -161,6 +161,7 @@ nav a:hover {
     min-height: 100vh !important;
     width: max-content; 
     padding-left: 15vw;
+    position: relative;
     padding-right: 45vw;
     background: linear-gradient(to bottom, var(--wall-color) 0%, #3e443c 100%);
 }
